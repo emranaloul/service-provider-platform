@@ -1,0 +1,21 @@
+# Build output
+dist
+build
+
+# Dependencies
+node_modules
+
+# Lockfiles (let the package manager own formatting)
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Generated / vendored
+*.min.js
+*.min.css
+coverage
+graphify-out
+
+# Auto-generated shadcn/ui primitives (optional — remove if you want them formatted)
+# src/components/ui
+docs/design

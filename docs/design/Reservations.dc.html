@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>بوابة مقدم الخدمة — الحجوزات</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./pulse.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#5b3cc4}a:hover{color:#44299e}
+</style>
+</helmet>
+<div class="{{cls}}" dir="rtl" style="min-height: 100%; display: flex; flex-wrap: wrap">
+
+<aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px">م</span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">موفق</span><span style="font-size: 12px">بوابة مقدم الخدمة</span></span>
+</div>
+<button type="button" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; border: 1px solid var(--ov-hero-line); background: var(--ov-hero-raised); color: var(--ov-hero-ink); font: inherit; text-align: start; cursor: pointer">
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)">كل الفروع · فرعان</span></span>
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-direction: column; gap: 4px">
+<a class="nv" href="Main.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>اليوم</a>
+<a class="nv on" aria-current="page" href="Reservations.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">الحجوزات</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">{{todayCount}}</span></a>
+<a class="nv" href="Ledgers.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>المطالبات</a>
+<a class="nv" href="Team.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 15.5c1.7.7 2.7 2.2 3 4.5"/></svg>الفريق</a>
+<a class="nv" href="Services.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخدمات</a>
+<a class="nv" href="Branches.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>الفروع</a>
+<a class="nv" href="Profile.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>ملف المركز</a>
+</nav>
+<div style="flex: 1"></div>
+<a class="nv" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg>المساعدة والدعم</a>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 30px 0">
+<div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">الحجوزات</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">طلبات الفحص الواردة من الشركات · كل الفروع</p></div>
+<button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">ابحث بالاسم أو الجوال أو الهوية</span><kbd class="num" dir="ltr" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
+<button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>تسجيل وصول</button>
+<div class="sg" role="group" aria-label="اللغة"><button type="button" class="on" aria-pressed="true">ع</button><button type="button" class="num" aria-pressed="false">EN</button></div>
+<button type="button" class="b bs ic" aria-label="التبديل إلى الوضع الداكن"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<button type="button" class="num" aria-label="قائمة الحساب، kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
+</header>
+
+<main style="width: 100%; max-width: 90rem; margin: 0 auto; padding: 24px 30px 40px; display: flex; flex-direction: column; gap: 20px">
+
+<section class="hero en" aria-labelledby="hero-t" style="padding: 28px 32px">
+<div class="glow" aria-hidden="true"></div>
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div class="ey"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>العروض المحفوظة</div>
+<h2 id="hero-t" class="hd" style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.15">اختر ما تريد العمل عليه</h2>
+<p style="margin: 0; color: var(--ov-hero-ink-2)">كل بطاقة عرض جاهز بعدده الحالي. اضغط بطاقة لتصفية الجدول.</p>
+</div>
+<button type="button" class="b bh sm"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>حفظ العرض الحالي</button>
+</div>
+<div role="group" aria-label="العروض المحفوظة" style="margin-top: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px">
+<sc-for list="{{tabs}}" as="t" hint-placeholder-count="6">
+<button type="button" class="{{t.cls}}" aria-pressed="{{t.active}}" onClick="{{t.pick}}"><span class="cap" style="font-weight: 700">{{t.label}}</span><span class="fig" style="font-size: 44px">{{t.count}}</span></button>
+</sc-for>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<div class="sg" role="group" aria-label="طريقة العرض">
+<a class="on" aria-current="page" href="Reservations.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>جدول</a>
+<a href="Board.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="7" rx="1"/></svg>لوحة</a>
+<a href="Calendar.dc.html"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>تقويم</a>
+</div>
+<div class="fb" role="group" aria-label="الفلاتر">
+<span class="lead"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>الفلاتر</span>
+<button type="button">الفرع: الكل</button>
+<button type="button">التاريخ: أي وقت</button>
+<button type="button">الشركة: الكل</button>
+<button type="button">+ فلتر</button>
+</div>
+<label style="flex: 1 1 220px; max-width: 320px; position: relative; display: block">
+<span class="vh">بحث في الحجوزات</span>
+<input class="in" type="search" placeholder="الاسم، الجوال، الهوية أو رقم الحجز" style="border-radius: 999px; padding-inline-start: 38px">
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; inset-inline-start: 13px; top: 11px; color: var(--ov-ink-2)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+</label>
+<div style="flex: 1 1 0"></div>
+<button type="button" class="b bs"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M4 20h16"/></svg>تصدير</button>
+<button type="button" class="b bs ic" aria-label="اختيار الأعمدة"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg></button>
+</div>
+
+<sc-if value="{{hasChecked}}" hint-placeholder-val="{{ false }}">
+<div role="region" aria-label="إجراءات جماعية" class="en" style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; padding: 8px 20px 8px 8px; border-radius: 999px; background: var(--ov-ink); color: var(--ov-surface)">
+<span style="font-weight: 700"><span class="num">{{checkedCount}}</span> محدد</span>
+<span style="font-size: 13px; opacity: .75">{{checkedPendingText}}</span>
+<div style="flex: 1 1 0"></div>
+<button type="button" class="b sm" onClick="{{checkinChecked}}" style="background: var(--ov-surface); color: var(--ov-ink)">تسجيل الوصول</button>
+<button type="button" class="b sm" style="background: transparent; color: var(--ov-surface); border-color: var(--ov-ink-3)">تصدير المحدد</button>
+<button type="button" class="b sm" onClick="{{clearChecked}}" style="background: transparent; color: var(--ov-surface)">إلغاء التحديد</button>
+</div>
+</sc-if>
+
+<div class="en2" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section class="pn" aria-label="قائمة الحجوزات" style="flex: 999 1 560px; min-width: 0; overflow: hidden">
+<div style="overflow-x: auto">
+<table class="tb" style="min-width: 860px">
+<thead>
+<tr>
+<th scope="col" style="width: 44px; padding-inline-end: 0"><input type="checkbox" checked="{{allChecked}}" onChange="{{toggleAll}}" aria-label="تحديد كل الظاهر"></th>
+<th scope="col">المراجع</th>
+<th scope="col">الطلب</th>
+<th scope="col">الموعد · الفرع</th>
+<th scope="col" class="end">المبلغ</th>
+<th scope="col">الحالة</th>
+<th scope="col" class="end"><span class="vh">إجراء</span></th>
+</tr>
+</thead>
+<tbody>
+<sc-for list="{{rows}}" as="r" hint-placeholder-count="8">
+<tr style="background: {{r.rowBg}}">
+<td style="padding-inline-end: 0"><input type="checkbox" checked="{{r.checked}}" onChange="{{r.toggle}}" aria-label="تحديد {{r.name}}" style="margin-top: 3px"></td>
+<td>
+<button type="button" onClick="{{r.open}}" style="padding: 0; border: 0; background: transparent; font: inherit; font-weight: 700; color: var(--ov-ink); text-align: start; cursor: pointer; text-decoration: underline; text-decoration-color: var(--ov-line-strong); text-underline-offset: 4px">{{r.name}}</button>
+<div class="num" style="color: var(--ov-ink-2); font-size: 12px"><span dir="ltr">{{r.ref}}</span> · <span dir="ltr">{{r.phone}}</span></div>
+</td>
+<td><div style="font-weight: 500">{{r.reqTitle}}</div><div style="color: var(--ov-ink-2); font-size: 12px">{{r.reqSub}}</div></td>
+<td style="white-space: nowrap"><div style="font-weight: 500">{{r.date}} · <span class="num">{{r.time}}</span></div><div style="color: var(--ov-ink-2); font-size: 12px">{{r.rel}} · {{r.branch}}</div></td>
+<td class="end" style="white-space: nowrap"><div style="font-weight: 700"><span class="num">{{r.totalStr}}</span> ر.س</div><div class="num" style="color: var(--ov-ink-2); font-size: 12px">{{r.baseStr}} + {{r.vatStr}} ضريبة</div></td>
+<td><span class="{{r.sCls}}">{{r.sLabel}}</span>
+<sc-if value="{{r.hasFit}}" hint-placeholder-val="{{ false }}"><div style="margin-top: 4px; font-size: 12px; font-weight: 700; color: {{r.fitFg}}">{{r.fitLabel}}</div></sc-if></td>
+<td class="end" style="white-space: nowrap">
+<sc-if value="{{r.hasNext}}" hint-placeholder-val="{{ false }}"><button type="button" class="b bp sm" onClick="{{r.next}}">{{r.nextLabel}}</button></sc-if>
+<sc-if value="{{r.noNext}}" hint-placeholder-val="{{ true }}"><button type="button" class="b bs sm" onClick="{{r.open}}">عرض</button></sc-if>
+</td>
+</tr>
+</sc-for>
+</tbody>
+</table>
+</div>
+<sc-if value="{{isEmpty}}" hint-placeholder-val="{{ false }}">
+<div style="margin: 20px; padding: 36px 24px; border: 1px dashed var(--ov-line-strong); border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; background: var(--ov-sunken); color: var(--ov-ink-2); display: grid; place-items: center"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+<div style="font-weight: 700; font-size: 15px">لا توجد حجوزات في هذا العرض</div>
+<div style="color: var(--ov-ink-2)">جرّب عرضاً آخر أو أزل الفلاتر.</div>
+</div>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 12px 20px; border-top: 1px solid var(--ov-line); color: var(--ov-ink-2); font-size: 13px">
+<span>عرض <span class="num">{{visibleCount}}</span> من <span class="num">{{visibleCount}}</span> · الأحدث أولاً</span>
+<span style="display: flex; align-items: center; gap: 8px">صفوف الصفحة <button type="button" class="b bs sm num" style="padding: 0 12px">25</button></span>
+</div>
+</section>
+
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+<aside class="pn" aria-label="تفاصيل الحجز" style="flex: 1 1 360px; max-width: 420px; min-width: 0; display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 20px 22px 16px; display: flex; gap: 10px; align-items: flex-start">
+<div style="flex: 1; min-width: 0">
+<div style="color: var(--ov-ink-2); font-size: 12px">حجز <span class="num" dir="ltr">{{d.ref}}</span></div>
+<h2 style="margin: 2px 0 8px; font-size: 18px; font-weight: 800">{{d.name}}</h2>
+<span class="{{d.sCls}}">{{d.sLabel}}</span>
+</div>
+<button type="button" class="b bs ic sm" aria-label="فتح في صفحة كاملة" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8 8M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></button>
+<button type="button" class="b bs ic sm" onClick="{{closeDrawer}}" aria-label="إغلاق التفاصيل" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div>
+
+<div style="padding: 0 22px 18px; display: flex; flex-direction: column; gap: 18px">
+<dl style="margin: 0; padding-top: 16px; border-top: 1px solid var(--ov-line); display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 8px 12px; font-size: 13px">
+<dt style="color: var(--ov-ink-2)">الموعد</dt><dd style="margin: 0; font-weight: 500">{{d.date}}، <span class="num">{{d.time}}</span> <span style="color: var(--ov-ink-2)">({{d.rel}})</span></dd>
+<dt style="color: var(--ov-ink-2)">الفرع</dt><dd style="margin: 0; font-weight: 500">{{d.branch}} · <span class="num">{{d.branchCode}}</span> <a href="#" style="font-weight: 700; margin-inline-start: 4px">الخريطة</a></dd>
+<dt style="color: var(--ov-ink-2)">الجوال</dt><dd class="num" style="margin: 0; font-weight: 500"><span dir="ltr">{{d.phone}}</span></dd>
+<dt style="color: var(--ov-ink-2)">رقم الهوية</dt><dd style="margin: 0; font-weight: 500"><span class="num" dir="ltr">•••• •• {{d.idTail}}</span> <button type="button" style="padding: 0; border: 0; background: transparent; font: inherit; color: var(--ov-accent); font-weight: 700; cursor: pointer; margin-inline-start: 4px">إظهار</button></dd>
+<dt style="color: var(--ov-ink-2)">الشركة</dt><dd style="margin: 0; font-weight: 500">{{d.companyShow}}</dd>
+<dt style="color: var(--ov-ink-2)">الدفع عبر</dt><dd style="margin: 0; font-weight: 500">{{d.reqTitle}}</dd>
+</dl>
+
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">يشمل</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{d.includes}}" as="inc" hint-placeholder-count="2"><span class="tg">{{inc}}</span></sc-for></div>
+</div>
+
+<div>
+<div style="display: flex; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 8px">
+<h3 style="margin: 0; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">الخدمات (<span class="num">{{d.serviceCount}}</span>)</h3>
+<span style="color: var(--ov-ink-2); font-size: 12px">{{d.group}}</span>
+</div>
+<ul style="list-style: none; margin: 0; padding: 0 14px; border-radius: 16px; background: var(--ov-raised); border: 1px solid var(--ov-line)">
+<sc-for list="{{d.servicesShown}}" as="s" hint-placeholder-count="4"><li style="padding: 8px 0; border-bottom: 1px solid var(--ov-line); font-size: 13px">{{s}}</li></sc-for>
+</ul>
+<sc-if value="{{d.hasMore}}" hint-placeholder-val="{{ false }}"><button type="button" onClick="{{toggleServices}}" style="margin-top: 6px; padding: 6px 0; border: 0; background: transparent; font: inherit; font-size: 13px; color: var(--ov-accent); font-weight: 700; cursor: pointer">{{d.moreLabel}}</button></sc-if>
+</div>
+
+<div style="padding: 14px 16px; border-radius: 16px; background: var(--ov-sunken); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: 13px">
+<span style="color: var(--ov-ink-2)">السعر الأساسي</span><span style="text-align: end"><span class="num">{{d.baseStr}}</span> ر.س</span>
+<span style="color: var(--ov-ink-2)">ضريبة القيمة المضافة <span class="num">15%</span></span><span style="text-align: end"><span class="num">{{d.vatStr}}</span> ر.س</span>
+<span style="font-weight: 700">الإجمالي</span><span style="text-align: end; font-weight: 800"><span class="num" style="font-size: 18px">{{d.totalStr}}</span> ر.س</span>
+</div>
+
+<sc-if value="{{d.isProg}}" hint-placeholder-val="{{ false }}">
+<fieldset style="margin: 0; padding: 14px; border: 1px solid var(--ov-line); border-radius: 16px">
+<legend style="padding: 0 6px; font-size: 13px; font-weight: 700">نتيجة اللياقة</legend>
+<div style="display: flex; gap: 8px">
+<label style="flex: 1; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid var(--ov-line); border-radius: 12px; background: var(--ov-raised); cursor: pointer"><input type="radio" name="fit" checked="{{d.fitIsFit}}" onChange="{{d.pickFit}}"> لائق</label>
+<label style="flex: 1; display: flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; border: 1px solid var(--ov-line); border-radius: 12px; background: var(--ov-raised); cursor: pointer"><input type="radio" name="fit" checked="{{d.fitIsUnfit}}" onChange="{{d.pickUnfit}}"> غير لائق</label>
+</div>
+<label style="position: relative; margin-top: 10px; display: flex; align-items: center; justify-content: center; gap: 8px; height: 44px; border: 1px dashed var(--ov-line-strong); border-radius: 12px; color: var(--ov-ink-2); font-size: 13px; cursor: pointer"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v3a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3"/></svg>إرفاق التقرير (PDF حتى 10 م.ب)<input type="file" class="vh"></label>
+</fieldset>
+</sc-if>
+
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">سجل النشاط</h3>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{d.activity}}" as="a" hint-placeholder-count="2">
+<li style="display: flex; gap: 10px; font-size: 13px"><span aria-hidden="true" style="width: 8px; height: 8px; margin-top: 7px; border-radius: 50%; background: var(--ov-accent); flex: none"></span><span><span style="font-weight: 700">{{a.t}}</span><br><span style="color: var(--ov-ink-2)">{{a.m}}</span></span></li>
+</sc-for>
+</ol>
+</div>
+</div>
+
+<div style="margin-top: auto; padding: 14px 22px 18px; border-top: 1px solid var(--ov-line); display: flex; flex-wrap: wrap; gap: 8px">
+<sc-if value="{{d.canIn}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bp" onClick="{{d.next}}" style="flex: 1">تسجيل الوصول</button>
+</sc-if>
+<sc-if value="{{d.isCheckin}}" hint-placeholder-val="{{ true }}">
+<button type="button" class="b bp" onClick="{{d.next}}" style="flex: 1">بدء الفحص</button>
+<button type="button" class="b bs">رمز QR</button>
+</sc-if>
+<sc-if value="{{d.isAccepted}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs">رمز QR</button>
+<button type="button" class="b bs" onClick="{{d.cancel}}" style="color: var(--ov-down)">إلغاء الحجز…</button>
+</sc-if>
+<sc-if value="{{d.isProg}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bp" onClick="{{d.complete}}" disabled="{{d.cantComplete}}" style="flex: 1">حفظ النتيجة وإكمال الحجز</button>
+<button type="button" class="b bs ic" aria-label="إجراءات أخرى"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01" style="stroke-width: 3.6"/></svg></button>
+</sc-if>
+<sc-if value="{{d.isDone}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs" style="flex: 1">تنزيل التقرير</button>
+<button type="button" class="b bs">المرفقات</button>
+</sc-if>
+<sc-if value="{{d.isDelayed}}" hint-placeholder-val="{{ false }}">
+<button type="button" class="b bs" onClick="{{d.noshow}}">إغلاق كعدم حضور</button>
+</sc-if>
+<sc-if value="{{d.isClosed}}" hint-placeholder-val="{{ false }}">
+<span style="color: var(--ov-ink-2); font-size: 13px">هذا الحجز مغلق، ولا إجراءات متاحة عليه.</span>
+</sc-if>
+</div>
+</aside>
+</sc-if>
+</div>
+
+<sc-if value="{{hasToast}}" hint-placeholder-val="{{ false }}">
+<div role="status" class="en" style="align-self: center; display: flex; align-items: center; gap: 14px; padding: 8px 20px 8px 8px; border-radius: 999px; background: var(--ov-raised); border: 1px solid var(--ov-line); box-shadow: var(--sh-lift)">
+<span>{{toast}}</span>
+<button type="button" class="b bp sm" onClick="{{undo}}">تراجع</button>
+</div>
+</sc-if>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1400}}'>
+var WES_SERVICES = ['فحص الملاريا','VDRL','مزرعة براز','فيروس التهاب الكبد C','أشعة الصدر','HIV','تعداد الدم الكامل (CBC)','تحليل البول','الفحص البدني والعضلي الهيكلي','فيروس التهاب الكبد B','لقاح البلدية','فصيلة الدم'];
+var BASIC = ['الفحص البدني','تعداد الدم الكامل (CBC)','تحليل البول','أشعة الصدر'];
+var LIVE = ['To test in Live'];
+var EX = 'فحص طبي';
+var DATA = [
+{id:'r13',ref:'#5592',name:'عمر حداد',phone:'+966 56 781 0042',idTail:'4471',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الخميس 12 نوفمبر',time:'13:00',rel:'بعد يومين',day:'up',base:1014,vat:152.1,status:'cancelled',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
+{id:'r12',ref:'#5591',name:'سارة القحطاني',phone:'+966 54 220 9136',idTail:'9015',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الأربعاء 11 نوفمبر',time:'10:00',rel:'غداً',day:'up',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
+{id:'r11',ref:'#5590',name:'لينا صالح',phone:'+966 50 112 4478',idTail:'2208',company:'AL_Sura Company',branch:'Test 3',branchCode:'89540',date:'الثلاثاء 10 نوفمبر',time:'11:30',rel:'اليوم',day:'today',base:20,vat:3,status:'accepted',pkg:true,includes:[EX],services:BASIC,group:'فحص البلدية',fit:null},
+{id:'r1',ref:'#5588',name:'Wesam jaber emp',phone:'+966 55 598 3070',idTail:'7310',company:'AL_Sura Company',branch:'Test2',branchCode:'65412',date:'الثلاثاء 10 نوفمبر',time:'09:00',rel:'اليوم',day:'today',base:1000,vat:150,status:'checkin',pkg:true,includes:[EX,'دورة تدريبية','اختبار معتمد (أركان)','سداد'],services:WES_SERVICES,group:'إصدار فحص البلدية مع اللقاح',fit:null},
+{id:'r2',ref:'#5571',name:'test email',phone:'+966 55 896 5826',idTail:'3156',company:'',branch:'Test2',branchCode:'65412',date:'الأحد 8 نوفمبر',time:'11:59',rel:'قبل يومين',day:'past',base:20,vat:3,status:'completed',pkg:true,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r3',ref:'#5523',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'الأربعاء 16 سبتمبر',time:'10:00',rel:'قبل 8 أسابيع',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r5',ref:'#4508',name:'To test sm',phone:'+966 59 975 9494',idTail:'1182',company:'',branch:'Test 3',branchCode:'89540',date:'الاثنين 27 يوليو',time:'09:30',rel:'قبل 15 أسبوعاً',day:'past',base:1014,vat:152.1,status:'completed',pkg:false,includes:[EX],services:BASIC,group:'فحص البلدية',fit:'unfit'},
+{id:'r4',ref:'#4507',name:'To test sm',phone:'+966 59 975 9494',idTail:'1182',company:'',branch:'Test 3',branchCode:'89540',date:'الأحد 26 يوليو',time:'09:30',rel:'قبل 15 أسبوعاً',day:'past',base:1014,vat:152.1,status:'completed',pkg:false,includes:[EX],services:BASIC,group:'فحص البلدية',fit:'fit'},
+{id:'r9',ref:'#4161',name:'Karam Al-Omari',phone:'+966 50 800 8334',idTail:'5093',company:'',branch:'Test2',branchCode:'65412',date:'الاثنين 20 يوليو',time:'12:00',rel:'قبل 16 أسبوعاً',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r6',ref:'#4157',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'الخميس 16 يوليو',time:'10:00',rel:'قبل 17 أسبوعاً',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r7',ref:'#4159',name:'Reem Mohammed',phone:'+966 59 673 1831',idTail:'6620',company:'',branch:'Test2',branchCode:'65412',date:'الأربعاء 15 يوليو',time:'10:00',rel:'قبل 17 أسبوعاً',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'},
+{id:'r8',ref:'#4160',name:'ahmad muslah',phone:'+962 77 898 7888',idTail:'8804',company:'',branch:'Test2',branchCode:'65412',date:'الأربعاء 15 يوليو',time:'11:00',rel:'قبل 17 أسبوعاً',day:'past',base:20,vat:3,status:'delayed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:null},
+{id:'r10',ref:'#4162',name:'عبدالحميد العجمي',phone:'+966 59 985 5252',idTail:'2741',company:'',branch:'Test2',branchCode:'65412',date:'الأربعاء 15 يوليو',time:'12:30',rel:'قبل 17 أسبوعاً',day:'past',base:20,vat:3,status:'completed',pkg:false,includes:[EX],services:LIVE,group:'To test in Live',fit:'fit'}
+];
+var META = {
+accepted:{l:'مقبول',c:'pl p-line'},
+checkin:{l:'تم الوصول',c:'pl p-acc'},
+inprogress:{l:'قيد الفحص',c:'pl p-solid'},
+delayed:{l:'متأخر',c:'pl p-warn'},
+noshow:{l:'لم يحضر',c:'pl p-down'},
+cancelled:{l:'ملغي',c:'pl p-flat'},
+completed:{l:'مكتمل',c:'pl p-up'}
+};
+var VIEWS = [
+{k:'all',l:'الكل'},{k:'today',l:'اليوم'},{k:'inside',l:'داخل المركز الآن'},{k:'upcoming',l:'القادمة'},{k:'delayed',l:'المتأخرة'},{k:'completed',l:'المكتملة'}
+];
+function money(n){return n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
+class Component extends DCLogic {
+constructor(p){super(p);this.state={view:'all',sel:'r1',checked:{},over:{},showAll:false,toast:'',prev:null,fits:{}};}
+st(r){return this.state.over[r.id]||r.status;}
+inView(r,v){var s=this.st(r);
+if(v==='all')return true;
+if(v==='inside')return s==='checkin'||s==='inprogress';
+if(v==='today')return r.day==='today';
+if(v==='upcoming')return r.day==='up'&&s==='accepted';
+if(v==='delayed')return s==='delayed';
+if(v==='completed')return s==='completed';
+return true;}
+setStatus(ids,s,msg){var prev=Object.assign({},this.state.over);var over=Object.assign({},this.state.over);ids.forEach(function(i){over[i]=s;});this.setState({over:over,prev:prev,toast:msg,checked:{}});}
+renderVals(){
+var self=this;var S=this.state;
+var tabs=VIEWS.map(function(v){var c=DATA.filter(function(r){return self.inView(r,v.k);}).length;var a=S.view===v.k;
+return {label:v.l,count:c,active:a?'true':'false',cls:a?'ht on':'ht',pick:function(){self.setState({view:v.k,checked:{}});}};});
+var vis=DATA.filter(function(r){return self.inView(r,S.view);});
+function decorate(r){var s=self.st(r);var m=META[s];var fit=s==='completed'?(S.fits[r.id]||r.fit):null;
+var canIn=(s==='accepted'&&r.day!=='up')||s==='delayed';
+var nextLabel=canIn?'تسجيل الوصول':(s==='checkin'?'بدء الفحص':(s==='inprogress'?'تسجيل النتيجة':''));
+function setFit(v){var f=Object.assign({},S.fits);f[r.id]=v;self.setState({fits:f});}
+return Object.assign({},r,{sLabel:m.l,sCls:m.c,status:s,
+hasFit:!!fit,fitLabel:fit==='fit'?'✓ لائق':(fit?'✕ غير لائق':''),fitFg:fit==='fit'?'var(--ov-up)':'var(--ov-down)',
+hasNext:!!nextLabel,noNext:!nextLabel,nextLabel:nextLabel,canIn:canIn,isAccepted:s==='accepted',isCheckin:s==='checkin',isProg:s==='inprogress',isDone:s==='completed',isDelayed:s==='delayed',isClosed:s==='noshow'||s==='cancelled',
+fitIsFit:S.fits[r.id]==='fit',fitIsUnfit:S.fits[r.id]==='unfit',cantComplete:!S.fits[r.id],
+pickFit:function(){setFit('fit');},pickUnfit:function(){setFit('unfit');},
+reqTitle:r.pkg?'باقة الشركة':'فحص فقط',
+reqSub:r.includes.length>1?r.includes[0]+' + '+(r.includes.length-1)+' أخرى':'عدد الخدمات: '+r.services.length,
+companyShow:r.company||'غير مرتبط بشركة',
+totalStr:money(r.base+r.vat),baseStr:money(r.base),vatStr:money(r.vat),
+checked:!!S.checked[r.id],rowBg:S.sel===r.id?'var(--ov-accent-soft)':'transparent',
+toggle:function(){var c=Object.assign({},S.checked);if(c[r.id])delete c[r.id];else c[r.id]=true;self.setState({checked:c});},
+open:function(){self.setState({sel:r.id,showAll:false});},
+next:function(){
+if(canIn)self.setStatus([r.id],'checkin','تم تسجيل وصول '+r.name+'.');
+else if(s==='checkin')self.setStatus([r.id],'inprogress','بدأ فحص '+r.name+'.');
+else self.setState({sel:r.id,showAll:false});},
+complete:function(){if(!S.fits[r.id])return;self.setStatus([r.id],'completed','اكتمل حجز '+r.name+' وسُجّلت النتيجة.');},
+noshow:function(){self.setStatus([r.id],'noshow','أُغلق حجز '+r.name+' كعدم حضور.');},
+cancel:function(){self.setStatus([r.id],'cancelled','تم إلغاء حجز '+r.name+'.');}
+});}
+var rows=vis.map(decorate);
+var checkedIds=Object.keys(S.checked);
+var pendingChecked=checkedIds.filter(function(i){var r=DATA.find(function(x){return x.id===i;});if(!r)return false;var s=self.st(r);return (s==='accepted'&&r.day!=='up')||s==='delayed';});
+var selRow=DATA.find(function(r){return r.id===S.sel;});
+var d=null;
+if(selRow){d=decorate(selRow);
+var list=d.services;d.serviceCount=list.length;d.servicesShown=S.showAll?list:list.slice(0,5);d.hasMore=list.length>5;d.moreLabel=S.showAll?'عرض أقل':'عرض كل الخدمات ('+list.length+')';
+var st=d.status;
+var act=[{t:'أُنشئ الحجز بحالة «مقبول»',m:(selRow.company||'حجز مباشر')+' · الموعد '+selRow.date}];
+if(st==='delayed'||st==='noshow')act.push({t:'صُنّف كمتأخر',m:'لم يُسجَّل وصول في '+selRow.date});
+if(st==='noshow')act.push({t:'أُغلق كعدم حضور',m:'بواسطة kordy test'});
+if(st==='cancelled')act.push({t:'أُلغي الحجز',m:'قبل موعده'});
+if(st==='checkin'||st==='inprogress'||st==='completed')act.push({t:'تم تسجيل الوصول',m:'بواسطة kordy test'});
+if(st==='inprogress'||st==='completed')act.push({t:'بدأ الفحص',m:'بواسطة kordy test'});
+if(st==='completed')act.push({t:'اكتمل · النتيجة: '+((S.fits[selRow.id]||selRow.fit)==='fit'?'لائق':'غير لائق'),m:'بواسطة kordy test'});
+d.activity=act;}
+var todayCount=DATA.filter(function(r){return r.day==='today';}).length;
+return {
+cls:this.props.dark?'ov dark':'ov',
+tabs:tabs,rows:rows,visibleCount:rows.length,isEmpty:rows.length===0,todayCount:todayCount,
+hasChecked:checkedIds.length>0,checkedCount:checkedIds.length,
+checkedPendingText:pendingChecked.length?'منها '+pendingChecked.length+' يمكن تسجيل وصولها':'لا يوجد بينها ما يمكن تسجيل وصوله',
+allChecked:rows.length>0&&rows.every(function(r){return S.checked[r.id];}),
+toggleAll:function(){var all=rows.length>0&&rows.every(function(r){return S.checked[r.id];});var c={};if(!all)rows.forEach(function(r){c[r.id]=true;});self.setState({checked:c});},
+clearChecked:function(){self.setState({checked:{}});},
+checkinChecked:function(){if(!pendingChecked.length)return;self.setStatus(pendingChecked,'checkin','تم تسجيل وصول الحجوزات المحددة ('+pendingChecked.length+').');},
+hasSel:!!d,d:d||{includes:[],servicesShown:[],activity:[]},
+closeDrawer:function(){self.setState({sel:null});},
+toggleServices:function(){self.setState({showAll:!S.showAll});},
+hasToast:!!S.toast,toast:S.toast,
+undo:function(){self.setState({over:S.prev||{},toast:'',prev:null});}
+};
+}
+}
+</script>
+</body>
+</html>

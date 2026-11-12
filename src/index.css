@@ -1,0 +1,344 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
+@import '@fontsource/tajawal/400.css';
+@import '@fontsource/tajawal/500.css';
+@import '@fontsource/tajawal/700.css';
+@import '@fontsource/tajawal/800.css';
+@import '@fontsource/noto-kufi-arabic/600.css';
+@import '@fontsource/noto-kufi-arabic/700.css';
+@import '@fontsource/geist/300.css';
+@import '@fontsource/geist/400.css';
+@import '@fontsource/geist/600.css';
+@import '@fontsource/geist/800.css';
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * PULSE theme — Service Provider Portal (docs/design/pulse.css).
+ * Arabic-first RTL, warm neutrals, ONE violet accent, ONE dark "hero" per page.
+ *
+ * Token families (use these as Tailwind classes, never hex in TSX):
+ *   grounds   bg-canvas · bg-surface · bg-raised · bg-sunken
+ *   ink       text-ink · text-ink-2 · text-ink-3
+ *   lines     border-line · border-line-strong
+ *   accent    bg-brand · text-brand · bg-brand-soft · hover:bg-brand-strong · text-on-brand
+ *   status    up (success) · down (danger) · warn · flat (neutral) — each with -soft
+ *   hero      bg-hero · bg-hero-raised · text-hero-ink · text-hero-ink-2 · border-hero-line
+ *             text-hero-accent · text-hero-up · text-hero-down · text-hero-warn
+ *
+ * shadcn's semantic variables (--primary, --card, …) map onto these, and the
+ * names in the "compat" block keep the shared layer (inherited from MARHAB)
+ * compiling. Prefer the Pulse names in new code.
+ */
+@theme inline {
+  --font-sans: 'Tajawal', system-ui, 'Segoe UI', sans-serif;
+  --font-heading: 'Noto Kufi Arabic', 'Tajawal', sans-serif;
+  --font-num: 'Geist', 'Tajawal', sans-serif;
+  --font-mono: ui-monospace, Menlo, monospace;
+
+  /* Type scale */
+  --text-display: 28px;
+  --text-display--line-height: 1.15;
+  --text-h1: 18px;
+  --text-h1--line-height: 1.4;
+  --text-h2: 16px;
+  --text-h2--line-height: 1.5;
+  --text-body: 14px;
+  --text-body--line-height: 1.6;
+  --text-small: 12.5px;
+  --text-small--line-height: 1.5;
+  --text-label: 12px;
+  --text-label--line-height: 1.4;
+  --text-figure: 32px;
+  --text-figure--line-height: 1;
+  --text-figure-lg: 64px;
+  --text-figure-lg--line-height: 1;
+
+  /* Pulse tokens */
+  --color-canvas: var(--ov-bg);
+  --color-surface: var(--ov-surface);
+  --color-raised: var(--ov-raised);
+  --color-sunken: var(--ov-sunken);
+  --color-ink: var(--ov-ink);
+  --color-ink-2: var(--ov-ink-2);
+  --color-ink-3: var(--ov-ink-3);
+  --color-line: var(--ov-line);
+  --color-line-strong: var(--ov-line-strong);
+  --color-brand: var(--ov-accent);
+  --color-brand-strong: var(--ov-accent-strong);
+  --color-brand-soft: var(--ov-accent-soft);
+  --color-on-brand: var(--ov-accent-ink);
+  --color-up: var(--ov-up);
+  --color-up-soft: var(--ov-up-soft);
+  --color-down: var(--ov-down);
+  --color-down-soft: var(--ov-down-soft);
+  --color-warn: var(--ov-warn);
+  --color-warn-soft: var(--ov-warn-soft);
+  --color-flat: var(--ov-flat);
+  --color-flat-soft: var(--ov-flat-soft);
+  --color-hero: var(--ov-hero);
+  --color-hero-raised: var(--ov-hero-raised);
+  --color-hero-ink: var(--ov-hero-ink);
+  --color-hero-ink-2: var(--ov-hero-ink-2);
+  --color-hero-line: var(--ov-hero-line);
+  --color-hero-accent: var(--ov-hero-accent);
+  --color-hero-up: var(--ov-hero-up);
+  --color-hero-down: var(--ov-hero-down);
+  --color-hero-warn: var(--ov-hero-warn);
+
+  /* Compat aliases (shared layer inherited from MARHAB) */
+  --color-surface-0: var(--ov-bg);
+  --color-surface-1: var(--ov-surface);
+  --color-surface-2: var(--ov-sunken);
+  --color-ink-muted: var(--ov-ink-2);
+  --color-ink-subtle: var(--ov-ink-3);
+  --color-text-secondary: var(--ov-ink-2);
+  --color-text-tertiary: var(--ov-ink-3);
+  --color-border-strong: var(--ov-line-strong);
+  --color-border-subtle: var(--ov-line);
+  --color-row-line: var(--ov-line);
+  --color-brand-hover: var(--ov-accent-strong);
+  --color-brand-ink: var(--ov-accent);
+  --color-action: var(--ov-ink);
+  --color-action-foreground: var(--ov-surface);
+  --color-success: var(--ov-up);
+  --color-success-soft: var(--ov-up-soft);
+  --color-success-solid: var(--ov-up);
+  --color-warning: var(--ov-warn);
+  --color-warning-soft: var(--ov-warn-soft);
+  --color-warning-solid: var(--ov-warn);
+  --color-danger: var(--ov-down);
+  --color-danger-soft: var(--ov-down-soft);
+  --color-danger-solid: var(--ov-down);
+  --color-danger-hover: var(--ov-down);
+  --color-on-danger: #ffffff;
+  --color-info: var(--ov-accent);
+  --color-info-soft: var(--ov-accent-soft);
+  --color-info-solid: var(--ov-accent);
+  --color-neutral-soft: var(--ov-flat-soft);
+  --color-maroon: var(--ov-accent);
+  --color-maroon-soft: var(--ov-accent-soft);
+  --color-focus: var(--ov-accent);
+  --color-scrim: var(--scrim);
+
+  /* shadcn semantic variables */
+  --color-background: var(--ov-bg);
+  --color-foreground: var(--ov-ink);
+  --color-card: var(--ov-surface);
+  --color-card-foreground: var(--ov-ink);
+  --color-popover: var(--ov-raised);
+  --color-popover-foreground: var(--ov-ink);
+  --color-primary: var(--ov-ink);
+  --color-primary-foreground: var(--ov-surface);
+  --color-secondary: var(--ov-sunken);
+  --color-secondary-foreground: var(--ov-ink);
+  --color-muted: var(--ov-sunken);
+  --color-muted-foreground: var(--ov-ink-2);
+  --color-accent: var(--ov-sunken);
+  --color-accent-foreground: var(--ov-ink);
+  --color-destructive: var(--ov-down);
+  --color-border: var(--ov-line);
+  --color-input: var(--ov-line);
+  --color-ring: var(--ov-accent);
+  --color-chart-1: var(--ov-accent);
+  --color-chart-2: var(--ov-up);
+  --color-chart-3: var(--ov-warn);
+  --color-chart-4: var(--ov-down);
+  --color-chart-5: var(--ov-flat);
+  --color-sidebar: var(--ov-hero);
+  --color-sidebar-foreground: var(--ov-hero-ink-2);
+  --color-sidebar-primary: var(--ov-hero-raised);
+  --color-sidebar-primary-foreground: var(--ov-hero-accent);
+  --color-sidebar-accent: var(--ov-hero-raised);
+  --color-sidebar-accent-foreground: var(--ov-hero-ink);
+  --color-sidebar-border: var(--ov-hero-line);
+  --color-sidebar-ring: var(--ov-hero-accent);
+
+  /* Elevation */
+  --shadow-card: var(--sh-card);
+  --shadow-lift: var(--sh-lift);
+  --shadow-hero: var(--sh-hero);
+  --shadow-sticky: var(--sh-card);
+  --shadow-pop: var(--sh-lift);
+  --shadow-toast: var(--sh-lift);
+  --shadow-modal: var(--sh-lift);
+
+  /* Radius: controls 12, tiles 14–16, panels 24, hero 32, pills full */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 14px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-3xl: 32px;
+  --radius-pill: 999px;
+
+  --spacing-sidebar: 248px;
+  --container-content: 90rem;
+
+  --animate-enter: ov-in 0.36s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ov-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+:root {
+  --radius: 12px;
+  --ov-bg: #f3f1ec;
+  --ov-surface: #fbfaf7;
+  --ov-raised: #fffefc;
+  --ov-sunken: #ebe8e1;
+  --ov-ink: #17161c;
+  --ov-ink-2: #55545d;
+  --ov-ink-3: #8a8892;
+  --ov-line: #e4e0d8;
+  --ov-line-strong: #cbc6bb;
+  --ov-accent: #5b3cc4;
+  --ov-accent-strong: #44299e;
+  --ov-accent-soft: #ece7fb;
+  --ov-accent-ink: #ffffff;
+  --ov-up: #0b7f57;
+  --ov-up-soft: #ddf2e8;
+  --ov-down: #c8402a;
+  --ov-down-soft: #fae4de;
+  --ov-warn: #9a6408;
+  --ov-warn-soft: #f8ecd2;
+  --ov-flat: #6e6c76;
+  --ov-flat-soft: #ecebee;
+  --ov-hero: #17161c;
+  --ov-hero-raised: #221f2b;
+  --ov-hero-ink: #f6f4fb;
+  --ov-hero-ink-2: #a9a5b7;
+  --ov-hero-line: #2f2b3a;
+  --ov-hero-accent: #a28cff;
+  --ov-hero-up: #4fdba4;
+  --ov-hero-down: #ff8a70;
+  --ov-hero-warn: #f2b84b;
+  --sh-card: 0 1px 0 rgba(23, 22, 28, 0.04), 0 1px 3px rgba(23, 22, 28, 0.05);
+  --sh-lift:
+    0 22px 48px -12px rgba(23, 22, 28, 0.32), 0 4px 12px rgba(23, 22, 28, 0.1);
+  --sh-hero: 0 30px 60px -30px rgba(52, 30, 140, 0.55);
+  --scrim: rgba(23, 22, 28, 0.48);
+}
+
+.dark {
+  --ov-bg: #0e0e12;
+  --ov-surface: #17161c;
+  --ov-raised: #1e1d25;
+  --ov-sunken: #121116;
+  --ov-ink: #f2f0f6;
+  --ov-ink-2: #b3b0bd;
+  --ov-ink-3: #7f7c89;
+  --ov-line: #26252e;
+  --ov-line-strong: #3a3845;
+  --ov-accent: #a28cff;
+  --ov-accent-strong: #c3b5ff;
+  --ov-accent-soft: #241e3d;
+  --ov-accent-ink: #120f1f;
+  --ov-up: #45d39c;
+  --ov-up-soft: #10291f;
+  --ov-down: #ff7d63;
+  --ov-down-soft: #2e1611;
+  --ov-warn: #f0b443;
+  --ov-warn-soft: #2a200b;
+  --ov-flat: #9a97a4;
+  --ov-flat-soft: #22212a;
+  --ov-hero: #1b1924;
+  --ov-hero-raised: #24212f;
+  --ov-hero-line: #312d3d;
+  --scrim: rgba(0, 0, 0, 0.64);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-background text-body text-foreground;
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ov-accent);
+    outline-offset: 2px;
+  }
+  button:not(:disabled),
+  a[href],
+  [role='button']:not([aria-disabled='true']),
+  [role='tab']:not([aria-disabled='true']),
+  [role='checkbox']:not([aria-disabled='true']),
+  [role='radio']:not([aria-disabled='true']),
+  [role='switch']:not([aria-disabled='true']),
+  [role='menuitem']:not([aria-disabled='true']),
+  [role='option']:not([aria-disabled='true']),
+  label[for] {
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--ov-line-strong);
+    border-radius: 6px;
+    border: 2px solid var(--ov-bg);
+  }
+}
+
+/* Numbers: Geist, tabular. */
+@utility num {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum', 'ss01';
+}
+
+/* Big KPI figures (hero tiles). */
+@utility fig {
+  font-family: var(--font-num);
+  font-variant-numeric: tabular-nums;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Headings: Noto Kufi Arabic. */
+@utility hd {
+  font-family: var(--font-heading);
+}
+
+/* Icons that point "forward" flip in RTL (arrows, chevrons). */
+@utility rtl-mirror {
+  &:where([dir='rtl'] *) {
+    transform: scaleX(-1);
+  }
+}
+
+/* Hero bloom: violet glow in the top-end corner. */
+@utility hero-glow {
+  background-image:
+    radial-gradient(
+      120% 90% at 0% 0%,
+      color-mix(in srgb, var(--ov-hero-accent) 26%, transparent),
+      transparent 55%
+    ),
+    radial-gradient(
+      80% 60% at 100% 100%,
+      color-mix(in srgb, var(--ov-hero-accent) 10%, transparent),
+      transparent 60%
+    );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-enter {
+    animation: none;
+  }
+}

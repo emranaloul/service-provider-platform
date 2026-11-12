@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>بوابة مقدم الخدمة — لوحة الحجوزات</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./pulse.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#5b3cc4}a:hover{color:#44299e}
+</style>
+</helmet>
+<div class="{{cls}}" dir="rtl" style="min-height: 100%; display: flex; flex-wrap: wrap">
+
+<aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px">م</span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">موفق</span><span style="font-size: 12px">بوابة مقدم الخدمة</span></span>
+</div>
+<button type="button" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; border: 1px solid var(--ov-hero-line); background: var(--ov-hero-raised); color: var(--ov-hero-ink); font: inherit; text-align: start; cursor: pointer">
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)">كل الفروع · فرعان</span></span>
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-direction: column; gap: 4px">
+<a class="nv" href="Main.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>اليوم</a>
+<a class="nv on" aria-current="page" href="Reservations.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">الحجوزات</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">2</span></a>
+<a class="nv" href="Ledgers.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>المطالبات</a>
+<a class="nv" href="Team.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 15.5c1.7.7 2.7 2.2 3 4.5"/></svg>الفريق</a>
+<a class="nv" href="Services.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخدمات</a>
+<a class="nv" href="Branches.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>الفروع</a>
+<a class="nv" href="Profile.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>ملف المركز</a>
+</nav>
+<div style="flex: 1"></div>
+<a class="nv" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg>المساعدة والدعم</a>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 30px 0">
+<div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">الحجوزات</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">لوحة مسار العمل النشط · كل الفروع</p></div>
+<button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">ابحث بالاسم أو الجوال أو الهوية</span><kbd class="num" dir="ltr" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
+<button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>تسجيل وصول</button>
+<div class="sg" role="group" aria-label="اللغة"><button type="button" class="on" aria-pressed="true">ع</button><button type="button" class="num" aria-pressed="false">EN</button></div>
+<button type="button" class="b bs ic" aria-label="التبديل إلى الوضع الداكن"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<button type="button" class="num" aria-label="قائمة الحساب، kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
+</header>
+
+<main style="width: 100%; max-width: 90rem; margin: 0 auto; padding: 24px 30px 40px; display: flex; flex-direction: column; gap: 20px">
+
+<section class="hero en" aria-labelledby="hero-t" style="padding: 28px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 36px">
+<div class="glow" aria-hidden="true"></div>
+<div style="flex: 1 1 280px; display: flex; flex-direction: column; gap: 8px">
+<div class="ey"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="5" height="16" rx="1"/><rect x="10" y="4" width="5" height="11" rx="1"/><rect x="17" y="4" width="4" height="7" rx="1"/></svg>مسار العمل النشط</div>
+<h2 id="hero-t" class="hd" style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.15">ما الذي يتحرك الآن؟</h2>
+<p style="margin: 0; color: var(--ov-hero-ink-2)">مقبول ← تم الوصول ← قيد الفحص ← مكتمل. اسحب البطاقة إلى الخطوة التالية فقط.</p>
+</div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span class="fig" style="font-size: 64px">4</span><span style="color: var(--ov-hero-ink-2)">حجوزات نشطة</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<div class="ht" style="cursor: default; min-width: 104px"><span class="cap" style="font-weight: 700">مقبول</span><span class="fig" style="font-size: 32px">2</span></div>
+<div class="ht" style="cursor: default; min-width: 104px"><span class="cap" style="font-weight: 700">تم الوصول</span><span class="fig" style="font-size: 32px; color: var(--ov-hero-accent)">1</span></div>
+<div class="ht" style="cursor: default; min-width: 104px"><span class="cap" style="font-weight: 700">قيد الفحص</span><span class="fig" style="font-size: 32px">0</span></div>
+<div class="ht" style="cursor: default; min-width: 104px"><span class="cap" style="font-weight: 700">متأخر</span><span class="fig" style="font-size: 32px; color: var(--ov-hero-warn)">1</span></div>
+</div>
+</section>
+
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px">
+<div class="sg" role="group" aria-label="طريقة العرض">
+<a href="Reservations.dc.html">جدول</a>
+<a class="on" aria-current="page" href="Board.dc.html">لوحة</a>
+<a href="Calendar.dc.html">تقويم</a>
+</div>
+<div class="fb" role="group" aria-label="الفلاتر">
+<span class="lead"><svg class="i" style="width: 15px; height: 15px" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h18M6 12h12M10 19h4"/></svg>الفلاتر</span>
+<button type="button">الفرع: الكل</button>
+<button type="button" class="on">التاريخ: 7 أيام قادمة + المتأخر</button>
+<button type="button">الشركة: الكل</button>
+</div>
+</div>
+
+<div class="en2" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+<div style="flex: 999 1 520px; min-width: 0; overflow-x: auto; padding-bottom: 8px">
+<div style="display: grid; grid-template-columns: repeat(4, minmax(240px, 1fr)) 190px; gap: 14px; min-width: 1210px; align-items: start">
+
+<section aria-label="مقبول، 2" style="background: var(--ov-sunken); border-radius: 24px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; padding: 2px 6px"><h2 style="margin: 0; font-size: 15px; font-weight: 700">مقبول</h2><span class="pl p-line num">2</span><span style="flex: 1"></span><span style="font-size: 12px; color: var(--ov-ink-2)">الحالة الافتراضية</span></div>
+<article class="pn" style="border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: {{c5590}}">
+<div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1; min-width: 0"><div style="font-weight: 700">لينا صالح</div><div style="color: var(--ov-ink-2); font-size: 12px"><span class="num" dir="ltr">#5590</span> · AL_Sura Company</div></div><span class="pl p-acc">اليوم</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ov-ink-2); font-size: 12.5px"><span>الثلاثاء 10 نوفمبر · <span class="num">11:30</span></span><span>Test 3</span><span><span class="num">23.00</span> ر.س</span></div>
+<div style="display: flex; gap: 8px"><button type="button" class="b bp sm" style="flex: 1">تسجيل الوصول</button><button type="button" class="b bs sm" onClick="{{o5590}}"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>التفاصيل</button></div>
+</article>
+<article class="pn" style="border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: {{c5591}}">
+<div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1; min-width: 0"><div style="font-weight: 700">سارة القحطاني</div><div style="color: var(--ov-ink-2); font-size: 12px"><span class="num" dir="ltr">#5591</span> · AL_Sura Company</div></div><span class="pl p-flat">غداً</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ov-ink-2); font-size: 12.5px"><span>الأربعاء 11 نوفمبر · <span class="num">10:00</span></span><span>Test2</span><span><span class="num">23.00</span> ر.س</span></div>
+<div style="display: flex; gap: 8px"><button type="button" class="b bs sm" onClick="{{o5591}}" style="flex: 1"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>التفاصيل</button></div>
+</article>
+</section>
+
+<section aria-label="تم الوصول، 1" style="background: var(--ov-sunken); border-radius: 24px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; padding: 2px 6px"><h2 style="margin: 0; font-size: 15px; font-weight: 700">تم الوصول</h2><span class="pl p-acc num">1</span></div>
+<article class="pn" style="border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: {{c5588}}">
+<div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1; min-width: 0"><div style="font-weight: 700">Wesam jaber emp</div><div style="color: var(--ov-ink-2); font-size: 12px"><span class="num" dir="ltr">#5588</span> · AL_Sura Company</div></div><span class="pl p-acc">ينتظر</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><span class="tg" style="background: var(--ov-raised)">فحص طبي · 12</span><span class="tg" style="background: var(--ov-raised)">دورة</span><span class="tg" style="background: var(--ov-raised)">أركان</span><span class="tg" style="background: var(--ov-raised)">سداد</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ov-ink-2); font-size: 12.5px"><span>موعده <span class="num">09:00</span></span><span>Test2</span><span><span class="num">1,150.00</span> ر.س</span></div>
+<div style="display: flex; gap: 8px"><button type="button" class="b bp sm" style="flex: 1">بدء الفحص</button><button type="button" class="b bs sm" onClick="{{o5588}}"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>التفاصيل</button></div>
+</article>
+</section>
+
+<section aria-label="قيد الفحص، 0" style="background: var(--ov-sunken); border-radius: 24px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; padding: 2px 6px"><h2 style="margin: 0; font-size: 15px; font-weight: 700">قيد الفحص</h2><span class="pl p-solid num">0</span></div>
+<div style="min-height: 120px; border: 1px dashed var(--ov-accent); border-radius: 18px; background: var(--ov-accent-soft); display: grid; place-items: center; color: var(--ov-accent); font-size: 13px; font-weight: 700; text-align: center; padding: 12px">أفلت هنا بطاقة من «تم الوصول» لبدء الفحص</div>
+<p style="margin: 2px 6px 0; color: var(--ov-ink-2); font-size: 12.5px">إكمال الحجز من هنا يفتح نافذة نتيجة اللياقة، فالنتيجة إلزامية.</p>
+</section>
+
+<section aria-label="متأخر، 1" style="background: var(--ov-sunken); border-radius: 24px; padding: 14px; display: flex; flex-direction: column; gap: 10px">
+<div style="display: flex; align-items: center; gap: 8px; padding: 2px 6px"><h2 style="margin: 0; font-size: 15px; font-weight: 700">متأخر</h2><span class="pl p-warn num">1</span></div>
+<article class="pn" style="border-radius: 18px; padding: 14px; display: flex; flex-direction: column; gap: 10px; border-color: {{c4160}}">
+<div style="display: flex; align-items: flex-start; gap: 8px"><div style="flex: 1; min-width: 0"><div style="font-weight: 700">ahmad muslah</div><div class="num" style="color: var(--ov-ink-2); font-size: 12px"><span dir="ltr">#4160</span> · <span dir="ltr">+962 77 898 7888</span></div></div><span class="pl p-warn"><span class="num">118</span> يوماً</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 4px 12px; color: var(--ov-ink-2); font-size: 12.5px"><span>الأربعاء 15 يوليو · <span class="num">11:00</span></span><span>Test2</span><span><span class="num">23.00</span> ر.س</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px"><button type="button" class="b bp sm" style="flex: 1">تسجيل الوصول</button><button type="button" class="b bs sm">عدم حضور</button><button type="button" class="b bs sm" onClick="{{o4160}}"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>التفاصيل</button></div>
+</article>
+</section>
+
+<section aria-label="الحالات المغلقة، مطوية" style="border: 1px dashed var(--ov-line-strong); border-radius: 24px; padding: 18px; display: flex; flex-direction: column; gap: 10px">
+<h2 style="margin: 0; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">مغلقة</h2>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span class="pl p-up">مكتمل</span><span class="num" style="font-weight: 800; font-size: 20px">8</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span class="pl p-down">لم يحضر</span><span class="num" style="font-weight: 800; font-size: 20px">0</span></div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px"><span class="pl p-flat">ملغي</span><span class="num" style="font-weight: 800; font-size: 20px">1</span></div>
+<div style="color: var(--ov-ink-2); font-size: 12.5px">مطوية حتى لا يغطّي المنجَز على العمل النشط.</div>
+<a href="Reservations.dc.html" style="font-weight: 700; font-size: 13px">فتح في الجدول</a>
+</section>
+
+</div>
+</div>
+
+<sc-if value="{{hasSel}}" hint-placeholder-val="{{ true }}">
+<aside class="pn" aria-label="تفاصيل الحجز" style="flex: 1 1 340px; max-width: 400px; min-width: 0; box-shadow: var(--sh-lift); display: flex; flex-direction: column; overflow: hidden">
+<div style="padding: 20px 22px 16px; display: flex; gap: 10px; align-items: flex-start">
+<div style="flex: 1; min-width: 0">
+<div style="color: var(--ov-ink-2); font-size: 12px">حجز <span class="num" dir="ltr">{{d.ref}}</span></div>
+<h2 style="margin: 2px 0 8px; font-size: 18px; font-weight: 800">{{d.name}}</h2>
+<span class="{{d.sCls}}">{{d.sLabel}}</span>
+</div>
+<a class="b bs ic sm" href="Reservations.dc.html" aria-label="فتح في صفحة الحجوزات" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-8 8M10 6H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></a>
+<button type="button" class="b bs ic sm" onClick="{{close}}" aria-label="إغلاق التفاصيل" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div>
+<div style="padding: 0 22px 18px; display: flex; flex-direction: column; gap: 16px">
+<dl style="margin: 0; padding-top: 16px; border-top: 1px solid var(--ov-line); display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 8px 12px; font-size: 13px">
+<dt style="color: var(--ov-ink-2)">الموعد</dt><dd style="margin: 0; font-weight: 500">{{d.date}}، <span class="num">{{d.time}}</span> <span style="color: var(--ov-ink-2)">({{d.rel}})</span></dd>
+<dt style="color: var(--ov-ink-2)">الفرع</dt><dd style="margin: 0; font-weight: 500">{{d.branch}} · <span class="num">{{d.code}}</span></dd>
+<dt style="color: var(--ov-ink-2)">الجوال</dt><dd class="num" style="margin: 0; font-weight: 500"><span dir="ltr">{{d.phone}}</span></dd>
+<dt style="color: var(--ov-ink-2)">رقم الهوية</dt><dd style="margin: 0; font-weight: 500"><span class="num" dir="ltr">•••• •• {{d.idTail}}</span> <button type="button" style="padding: 0; border: 0; background: transparent; font: inherit; color: var(--ov-accent); font-weight: 700; cursor: pointer; margin-inline-start: 4px">إظهار</button></dd>
+<dt style="color: var(--ov-ink-2)">الشركة</dt><dd style="margin: 0; font-weight: 500">{{d.company}}</dd>
+<dt style="color: var(--ov-ink-2)">الدفع عبر</dt><dd style="margin: 0; font-weight: 500">{{d.pay}}</dd>
+</dl>
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">يشمل</h3>
+<div style="display: flex; flex-wrap: wrap; gap: 6px"><sc-for list="{{d.includes}}" as="inc" hint-placeholder-count="2"><span class="tg">{{inc}}</span></sc-for></div>
+</div>
+<div>
+<h3 style="margin: 0 0 8px; font-size: 12.5px; font-weight: 700; color: var(--ov-ink-2)">الخدمات (<span class="num">{{d.count}}</span>)</h3>
+<ul style="list-style: none; margin: 0; padding: 0 14px; border-radius: 16px; background: var(--ov-raised); border: 1px solid var(--ov-line)">
+<sc-for list="{{d.services}}" as="s" hint-placeholder-count="4"><li style="padding: 8px 0; border-bottom: 1px solid var(--ov-line); font-size: 13px">{{s}}</li></sc-for>
+</ul>
+<sc-if value="{{d.hasMore}}" hint-placeholder-val="{{ false }}"><a href="Reservations.dc.html" style="display: inline-block; margin-top: 8px; font-size: 13px; font-weight: 700">{{d.moreLabel}}</a></sc-if>
+</div>
+<div style="padding: 14px 16px; border-radius: 16px; background: var(--ov-sunken); display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; font-size: 13px">
+<span style="color: var(--ov-ink-2)">السعر الأساسي</span><span style="text-align: end"><span class="num">{{d.base}}</span> ر.س</span>
+<span style="color: var(--ov-ink-2)">ضريبة القيمة المضافة <span class="num">15%</span></span><span style="text-align: end"><span class="num">{{d.vat}}</span> ر.س</span>
+<span style="font-weight: 700">الإجمالي</span><span style="text-align: end; font-weight: 800"><span class="num" style="font-size: 18px">{{d.total}}</span> ر.س</span>
+</div>
+</div>
+<div style="margin-top: auto; padding: 14px 22px 18px; border-top: 1px solid var(--ov-line); display: flex; flex-wrap: wrap; gap: 8px">
+<sc-if value="{{d.hasPrimary}}" hint-placeholder-val="{{ true }}"><button type="button" class="b bp" style="flex: 1">{{d.primary}}</button></sc-if>
+<button type="button" class="b bs">{{d.secondary}}</button>
+</div>
+</aside>
+</sc-if>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1240}}'>
+var EX = 'فحص طبي';
+var BASIC = ['الفحص البدني','تعداد الدم الكامل (CBC)','تحليل البول','أشعة الصدر'];
+var WES = ['فحص الملاريا','VDRL','مزرعة براز','فيروس التهاب الكبد C','أشعة الصدر','HIV','تعداد الدم الكامل (CBC)','تحليل البول','الفحص البدني والعضلي الهيكلي','فيروس التهاب الكبد B','لقاح البلدية','فصيلة الدم'];
+var CARDS = {
+'5590': {ref:'#5590', name:'لينا صالح', sLabel:'مقبول', sCls:'pl p-line', date:'الثلاثاء 10 نوفمبر', time:'11:30', rel:'اليوم', branch:'Test 3', code:'89540', phone:'+966 50 112 4478', idTail:'2208', company:'AL_Sura Company', pay:'باقة الشركة', includes:[EX], all:BASIC, base:'20.00', vat:'3.00', total:'23.00', primary:'تسجيل الوصول', secondary:'رمز QR'},
+'5591': {ref:'#5591', name:'سارة القحطاني', sLabel:'مقبول', sCls:'pl p-line', date:'الأربعاء 11 نوفمبر', time:'10:00', rel:'غداً', branch:'Test2', code:'65412', phone:'+966 54 220 9136', idTail:'9015', company:'AL_Sura Company', pay:'باقة الشركة', includes:[EX], all:BASIC, base:'20.00', vat:'3.00', total:'23.00', primary:'', secondary:'رمز QR'},
+'5588': {ref:'#5588', name:'Wesam jaber emp', sLabel:'تم الوصول', sCls:'pl p-acc', date:'الثلاثاء 10 نوفمبر', time:'09:00', rel:'اليوم', branch:'Test2', code:'65412', phone:'+966 55 598 3070', idTail:'7310', company:'AL_Sura Company', pay:'باقة الشركة', includes:[EX,'دورة تدريبية','اختبار معتمد (أركان)','سداد'], all:WES, base:'1,000.00', vat:'150.00', total:'1,150.00', primary:'بدء الفحص', secondary:'رمز QR'},
+'4160': {ref:'#4160', name:'ahmad muslah', sLabel:'متأخر', sCls:'pl p-warn', date:'الأربعاء 15 يوليو', time:'11:00', rel:'قبل 17 أسبوعاً', branch:'Test2', code:'65412', phone:'+962 77 898 7888', idTail:'8804', company:'غير مرتبط بشركة', pay:'فحص فقط', includes:[EX], all:['To test in Live'], base:'20.00', vat:'3.00', total:'23.00', primary:'تسجيل الوصول', secondary:'إغلاق كعدم حضور'}
+};
+class Component extends DCLogic {
+constructor(p){ super(p); this.state = { sel: '5588' }; }
+renderVals() {
+var self = this, sel = this.state.sel, c = CARDS[sel], d = null;
+if (c) {
+d = Object.assign({}, c, {count: c.all.length, services: c.all.slice(0, 5), hasMore: c.all.length > 5, moreLabel: 'عرض كل الخدمات (' + c.all.length + ')', hasPrimary: !!c.primary});
+}
+function open(id){ return function(){ self.setState({sel: id}); }; }
+function ring(id){ return sel === id ? 'var(--ov-accent)' : 'var(--ov-line)'; }
+return {
+cls: this.props.dark ? 'ov dark' : 'ov',
+hasSel: !!d, d: d || {includes: [], services: []},
+close: function(){ self.setState({sel: null}); },
+o5590: open('5590'), o5591: open('5591'), o5588: open('5588'), o4160: open('4160'),
+c5590: ring('5590'), c5591: ring('5591'), c5588: ring('5588'), c4160: ring('4160')
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ar">
+<head>
+<meta charset="utf-8">
+<title>بوابة مقدم الخدمة — الفريق</title>
+<script src="./support.js"></script>
+<link rel="stylesheet" href="./pulse.css">
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;600;800&amp;family=Noto+Kufi+Arabic:wght@600;700&amp;family=Tajawal:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#5b3cc4}a:hover{color:#44299e}
+</style>
+</helmet>
+<div class="{{cls}}" dir="rtl" style="min-height: 100%; display: flex; flex-wrap: wrap">
+
+<aside style="flex: 1 1 240px; background: var(--ov-hero); color: var(--ov-hero-ink-2); padding: 20px 14px; display: flex; flex-direction: column; gap: 18px">
+<div style="display: flex; align-items: center; gap: 10px; padding: 0 6px">
+<span aria-hidden="true" class="hd" style="width: 36px; height: 36px; border-radius: 12px; background: var(--ov-hero-accent); color: var(--ov-hero); display: grid; place-items: center; font-weight: 700; font-size: 17px">م</span>
+<span style="display: flex; flex-direction: column; line-height: 1.35"><span class="hd" style="color: var(--ov-hero-ink); font-weight: 700; font-size: 15px">موفق</span><span style="font-size: 12px">بوابة مقدم الخدمة</span></span>
+</div>
+<button type="button" style="display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 16px; border: 1px solid var(--ov-hero-line); background: var(--ov-hero-raised); color: var(--ov-hero-ink); font: inherit; text-align: start; cursor: pointer">
+<span style="flex: 1; display: flex; flex-direction: column; line-height: 1.4"><span style="font-weight: 700">Test</span><span style="font-size: 12px; color: var(--ov-hero-ink-2)">كل الفروع · فرعان</span></span>
+<svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+</button>
+<nav aria-label="القائمة الرئيسية" style="display: flex; flex-direction: column; gap: 4px">
+<a class="nv" href="Main.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M5 19l1.5-1.5M17.5 6.5L19 5"/></svg>اليوم</a>
+<a class="nv" href="Reservations.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="3"/><path d="M16 2v4M8 2v4M3 10h18"/></svg><span style="flex: 1">الحجوزات</span><span class="num" style="min-width: 22px; height: 22px; padding: 0 6px; border-radius: 999px; background: var(--ov-hero-accent); color: var(--ov-hero); font-size: 12px; font-weight: 600; display: grid; place-items: center">2</span></a>
+<a class="nv" href="Ledgers.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></svg>المطالبات</a>
+<a class="nv on" aria-current="page" href="Team.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M16 4.6a3.5 3.5 0 0 1 0 6.8M18.5 15.5c1.7.7 2.7 2.2 3 4.5"/></svg>الفريق</a>
+<a class="nv" href="Services.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M10 6h10M10 12h10M10 18h10M4 6l1 1 2-2M4 12l1 1 2-2M4 18l1 1 2-2"/></svg>الخدمات</a>
+<a class="nv" href="Branches.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>الفروع</a>
+<a class="nv" href="Profile.dc.html"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 21V6l8-3 8 3v15"/><path d="M9 21v-5h6v5M9 9h.01M15 9h.01M9 13h.01M15 13h.01"/></svg>ملف المركز</a>
+</nav>
+<div style="flex: 1"></div>
+<a class="nv" href="#"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .8-1 1.5M12 17h.01"/></svg>المساعدة والدعم</a>
+</aside>
+
+<div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column">
+<header style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 30px 0">
+<div style="flex: 1 1 200px; min-width: 0"><h1 class="hd" style="margin: 0; font-size: 18px; font-weight: 700">الفريق</h1><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">موظفو المركز الذين يمكنهم الدخول إلى هذه البوابة</p></div>
+<button type="button" class="b bs" style="min-width: 240px; padding: 0 14px; font-weight: 500; color: var(--ov-ink-2)"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span style="flex: 1; text-align: start">ابحث بالاسم أو الجوال أو الهوية</span><kbd class="num" dir="ltr" style="font-size: 11px; padding: 2px 6px; border: 1px solid var(--ov-line); border-radius: 6px">Ctrl K</kbd></button>
+<button type="button" class="b bp"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM21 14v.01M14 21h.01M17 21h4v-4"/></svg>تسجيل وصول</button>
+<div class="sg" role="group" aria-label="اللغة"><button type="button" class="on" aria-pressed="true">ع</button><button type="button" class="num" aria-pressed="false">EN</button></div>
+<button type="button" class="b bs ic" aria-label="التبديل إلى الوضع الداكن"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></button>
+<button type="button" class="num" aria-label="قائمة الحساب، kordy test" style="width: 40px; height: 40px; border: 0; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); font-weight: 600; font-size: 13px; cursor: pointer">KT</button>
+</header>
+
+<main style="width: 100%; max-width: 90rem; margin: 0 auto; padding: 24px 30px 40px; display: flex; flex-direction: column; gap: 24px">
+
+<section class="hero en" aria-labelledby="hero-t" style="padding: 28px 32px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px 40px">
+<div class="glow" aria-hidden="true"></div>
+<div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 8px">
+<div class="ey"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5"/></svg>فريق المركز</div>
+<h2 id="hero-t" class="hd" style="margin: 0; font-size: 28px; font-weight: 700; line-height: 1.15">من يعمل على الحجوزات؟</h2>
+<p style="margin: 0; color: var(--ov-hero-ink-2)">أضف موظفي الاستقبال والأطباء ليقبلوا الطلبات ويسجّلوا النتائج لفروعهم.</p>
+</div>
+<div style="display: flex; align-items: baseline; gap: 10px"><span class="fig" style="font-size: 64px">1</span><span style="color: var(--ov-hero-ink-2)">عضو نشط</span></div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px">
+<div class="ht" style="cursor: default; min-width: 120px"><span class="cap" style="font-weight: 700">الفروع</span><span class="fig" style="font-size: 32px">2</span></div>
+<div class="ht" style="cursor: default; min-width: 120px"><span class="cap" style="font-weight: 700">دعوات معلّقة</span><span class="fig" style="font-size: 32px">0</span></div>
+</div>
+</section>
+
+<div class="en2" style="display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start">
+
+<section class="pn" aria-label="أعضاء الفريق" style="flex: 999 1 520px; min-width: 0; overflow: hidden">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px; padding: 18px 22px">
+<label style="flex: 1 1 200px; max-width: 300px; position: relative; display: block"><span class="vh">بحث في الفريق</span><input class="in" type="search" placeholder="الاسم أو البريد الإلكتروني" style="border-radius: 999px; padding-inline-start: 38px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true" style="position: absolute; inset-inline-start: 13px; top: 11px; color: var(--ov-ink-2)"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></label>
+<div class="fb" role="group" aria-label="الفلاتر"><span class="lead">الفلاتر</span><button type="button">الدور: الكل</button><button type="button">الفرع: الكل</button></div>
+<div style="flex: 1 1 0"></div>
+<button type="button" class="b bp" aria-expanded="true"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>إضافة عضو</button>
+</div>
+<div style="overflow-x: auto">
+<table class="tb" style="min-width: 620px">
+<thead><tr><th scope="col">العضو</th><th scope="col">الدور</th><th scope="col">الفروع</th><th scope="col">الجوال</th><th scope="col">الحالة</th><th scope="col" class="end"><span class="vh">إجراءات</span></th></tr></thead>
+<tbody>
+<tr>
+<td><div style="display: flex; align-items: center; gap: 12px"><span aria-hidden="true" class="num" style="width: 36px; height: 36px; border-radius: 50%; background: var(--ov-accent-soft); color: var(--ov-accent); display: grid; place-items: center; font-weight: 600; font-size: 13px">KT</span><div><div style="font-weight: 700">kordy test <span style="color: var(--ov-ink-2); font-weight: 400">(أنت)</span></div><div class="num" style="color: var(--ov-ink-2); font-size: 12px" dir="ltr">Testprovider@test.com</div></div></div></td>
+<td>مدير المركز</td>
+<td><div style="display: flex; gap: 4px; flex-wrap: wrap"><span class="tg">Test2</span><span class="tg">Test 3</span></div></td>
+<td class="num"><span dir="ltr">+966 59 893 0931</span></td>
+<td><span class="pl p-up">نشط</span></td>
+<td class="end"><button type="button" class="b bg ic sm" aria-label="إجراءات kordy test" style="width: 36px"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h.01M12 12h.01M19 12h.01" style="stroke-width: 3.6"/></svg></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div style="margin: 20px; padding: 28px 24px; border: 1px dashed var(--ov-line-strong); border-radius: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center">
+<span aria-hidden="true" style="width: 56px; height: 56px; border-radius: 16px; background: var(--ov-sunken); color: var(--ov-ink-2); display: grid; place-items: center"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M19 8v6M16 11h6"/></svg></span>
+<div style="font-weight: 700; font-size: 15px">أنت العضو الوحيد حالياً</div>
+<div style="color: var(--ov-ink-2); max-width: 420px">كل عضو يرى حجوزات فروعه فقط، ويمكنك تغيير دوره أو إيقاف حسابه في أي وقت.</div>
+</div>
+</section>
+
+<aside class="pn" aria-labelledby="addt" style="flex: 1 1 400px; max-width: 480px; min-width: 0; box-shadow: var(--sh-lift); display: flex; flex-direction: column">
+<div style="display: flex; align-items: center; gap: 12px; padding: 20px 22px 14px">
+<span class="it" aria-hidden="true" style="background: var(--ov-accent-soft); color: var(--ov-accent)"><svg class="i" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.6-3.4 3.2-5 6.5-5s5.9 1.6 6.5 5M19 8v6M16 11h6"/></svg></span>
+<div style="flex: 1"><h2 id="addt" style="margin: 0; font-size: 16px; font-weight: 700">إضافة عضو للفريق</h2><p style="margin: 0; font-size: 12.5px; color: var(--ov-ink-2)">سنرسل له رابط دعوة على بريده</p></div>
+<button type="button" class="b bs ic sm" aria-label="إغلاق" style="width: 36px"><svg class="i" style="width: 16px; height: 16px" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+</div>
+<form style="padding: 4px 22px 18px; display: flex; flex-direction: column; gap: 16px">
+<fieldset style="margin: 0; padding: 0; border: 0; display: flex; flex-direction: column; gap: 14px">
+<legend style="padding: 0 0 10px; font-weight: 700; font-size: 12.5px; color: var(--ov-ink-2)">الحساب والصلاحيات</legend>
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px">
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">الاسم الأول<input class="in" type="text" required value="هدى"></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">اسم العائلة<input class="in" type="text" required value="الحربي"></label>
+</div>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">البريد الإلكتروني للعمل
+<input class="in num" type="email" dir="ltr" required value="huda@" aria-invalid="true" aria-describedby="em-err" style="border-color: var(--ov-down); text-align: end">
+<span id="em-err" style="color: var(--ov-down); font-weight: 500">أدخل البريد كاملاً، مثل name@clinic.com</span></label>
+<label style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">رقم الجوال
+<span dir="ltr" style="display: flex; height: 40px; border: 1px solid var(--ov-line); border-radius: 12px; overflow: hidden; background: var(--ov-raised)"><span class="num" style="display: grid; place-items: center; padding: 0 12px; background: var(--ov-sunken); color: var(--ov-ink-2); font-weight: 400">+966</span><input class="num" type="tel" required placeholder="5X XXX XXXX" style="flex: 1; min-width: 0; padding: 0 12px; border: 0; background: transparent; color: var(--ov-ink); font-size: 14px"></span></label>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">الدور
+<div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px">
+<label style="display: flex; gap: 10px; padding: 12px; border: 1px solid var(--ov-accent); border-radius: 16px; background: var(--ov-accent-soft); cursor: pointer; font-weight: 400"><input type="radio" name="role" checked style="margin-top: 2px"><span><span style="display: block; font-weight: 700">موظف استقبال</span><span style="color: var(--ov-ink-2); font-size: 12px">قبول الطلبات، تسجيل الوصول، عرض الجدول</span></span></label>
+<label style="display: flex; gap: 10px; padding: 12px; border: 1px solid var(--ov-line); border-radius: 16px; background: var(--ov-raised); cursor: pointer; font-weight: 400"><input type="radio" name="role" style="margin-top: 2px"><span><span style="display: block; font-weight: 700">مدير المركز</span><span style="color: var(--ov-ink-2); font-size: 12px">كل الصلاحيات، ومنها المطالبات والفريق</span></span></label>
+</div></div>
+<div style="display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 700">الفروع
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<label style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid var(--ov-accent); border-radius: 999px; background: var(--ov-accent-soft); color: var(--ov-accent); cursor: pointer"><input type="checkbox" checked>Test2 · <span class="num">65412</span></label>
+<label style="display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px; border: 1px solid var(--ov-line); border-radius: 999px; background: var(--ov-raised); font-weight: 500; cursor: pointer"><input type="checkbox">Test 3 · <span class="num">89540</span></label>
+</div></div>
+</fieldset>
+
+<details style="border: 1px solid var(--ov-line); border-radius: 16px; padding: 0 14px; background: var(--ov-raised)">
+<summary style="min-height: 48px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 4px 12px; cursor: pointer; font-weight: 700">البيانات الشخصية <span style="font-weight: 400; color: var(--ov-ink-2); font-size: 12.5px">اختيارية · الهوية، تاريخ الميلاد، الجنسية، العنوان، الصورة، الوسوم</span></summary>
+</details>
+</form>
+<div style="margin-top: auto; display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; padding: 14px 22px 20px; border-top: 1px solid var(--ov-line)">
+<button type="button" class="b bg">إلغاء</button>
+<button type="button" class="b bp">إرسال الدعوة</button>
+</div>
+</aside>
+</div>
+</main>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false,"section":"Theme"},"$preview":{"width":1440,"height":1100}}'>
+class Component extends DCLogic {
+renderVals() {
+return { cls: this.props.dark ? 'ov dark' : 'ov' };
+}
+}
+</script>
+</body>
+</html>

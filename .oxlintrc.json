@@ -1,0 +1,62 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": [
+    "react",
+    "typescript",
+    "oxc"
+  ],
+  "rules": {
+    "react/rules-of-hooks": "error",
+    "react/only-export-components": [
+      "warn",
+      {
+        "allowConstantExport": true
+      }
+    ],
+    "react/immutability": "error",
+    "react/globals": "error",
+    "react/refs": "error",
+    "react/purity": "error",
+    "react/set-state-in-render": "error",
+    "react/set-state-in-effect": "error",
+    "react/static-components": "error",
+    "react/use-memo": "error",
+    "react/preserve-manual-memoization": "error",
+    "react/incompatible-library": "error",
+    "react/error-boundaries": "error",
+    "react/unsupported-syntax": "error"
+  },
+  "overrides": [
+    {
+      "files": [
+        "src/shared/components/data-table.tsx"
+      ],
+      "rules": {
+        "react/immutability": "off",
+        "react/globals": "off",
+        "react/refs": "off",
+        "react/purity": "off",
+        "react/set-state-in-render": "off",
+        "react/set-state-in-effect": "off",
+        "react/static-components": "off",
+        "react/use-memo": "off",
+        "react/preserve-manual-memoization": "off",
+        "react/incompatible-library": "off",
+        "react/error-boundaries": "off",
+        "react/unsupported-syntax": "off"
+      }
+    },
+    {
+      "files": [
+        "src/**/*.routes.tsx"
+      ],
+      "rules": {
+        "react/only-export-components": "off"
+      }
+    }
+  ],
+  "ignorePatterns": [
+    "docs/**",
+    "dist/**"
+  ]
+}

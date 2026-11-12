@@ -1,0 +1,21 @@
+# Normalize all text files to LF in the repo and on checkout, regardless of a
+# contributor's core.autocrlf setting. This keeps the working tree consistent
+# with the repo's `endOfLine: lf` Prettier rule, so `prettier --check` (run by
+# the pre-commit hook) passes on Windows checkouts instead of flagging CRLF.
+* text=auto eol=lf
+
+# Binary assets Git must never touch.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+
+# Git hooks are shell scripts — they must keep LF endings to run under sh,
+# even on Windows checkouts with core.autocrlf=true.
+.githooks/* text eol=lf
