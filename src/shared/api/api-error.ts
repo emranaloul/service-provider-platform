@@ -51,7 +51,14 @@ export function errorBodyOf(payload: unknown): ApiErrorBody | null {
       ...payload.error,
     };
   }
-  if ('code' in payload || 'message' in payload) return payload as ApiErrorBody;
+  // A 600 can carry only an `actionCode` (e.g. "user already exists").
+  if (
+    'code' in payload ||
+    'message' in payload ||
+    ('actionCode' in payload && !('value' in payload))
+  ) {
+    return payload as ApiErrorBody;
+  }
   return null;
 }
 
@@ -89,7 +96,16 @@ export function toApiError(error: unknown): ApiError {
 /** The backend's localized message, or a generic one when it sent none. */
 export function errorMessage(error: unknown): string {
   const apiError = toApiError(error);
+  // HTTP 600 is the business-error channel: its message is shown as-is (§1.4).
   if (apiError.message) return apiError.message;
   if (apiError.kind === 'network') return i18n.t('common.networkError');
-  return i18n.t('common.error');
+  const byStatus: Record<number, string> = {
+    400: 'common.badRequest',
+    401: 'common.unauthorized',
+    403: 'common.forbidden',
+    404: 'common.notFoundError',
+    500: 'common.serverError',
+  };
+  const key = apiError.status ? byStatus[apiError.status] : undefined;
+  return i18n.t(key ?? 'common.error');
 }

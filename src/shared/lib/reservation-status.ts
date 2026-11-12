@@ -1,12 +1,13 @@
+import { OrderStatus } from '@/shared/api/enums';
 import type { StatusBadgeVariant } from '@/shared/components/status-badge-variants';
 
 /**
- * Reservation status model (design canvas README):
- *   Accepted (default) → Checked in → In progress → Completed
- *   side exits: Delayed, No show, Cancelled. No accept/decline step.
- * TODO(backend): map the API's status enum onto these keys.
+ * Reservation status keys, mapped from the backend's `OrderStatus` bits
+ * (doc §2.3). Providers act from Accepted on: they cannot Accept or Reject;
+ * their status change offers Check-in and In progress (Missing Items §11.8).
  */
 export const RESERVATION_STATUSES = [
+  'new',
   'accepted',
   'checkedIn',
   'inProgress',
@@ -14,13 +15,31 @@ export const RESERVATION_STATUSES = [
   'delayed',
   'noShow',
   'cancelled',
+  'rejected',
 ] as const;
 export type ReservationStatus = (typeof RESERVATION_STATUSES)[number];
+
+export const STATUS_KEY: Record<OrderStatus, ReservationStatus> = {
+  [OrderStatus.New]: 'new',
+  [OrderStatus.Accept]: 'accepted',
+  [OrderStatus.Cancel]: 'cancelled',
+  [OrderStatus.Reject]: 'rejected',
+  [OrderStatus.CheckIn]: 'checkedIn',
+  [OrderStatus.InProgress]: 'inProgress',
+  [OrderStatus.Complete]: 'completed',
+  [OrderStatus.NoShow]: 'noShow',
+  [OrderStatus.Delayed]: 'delayed',
+};
+
+/** Unknown values fall back to `new` rather than crashing a row. */
+export const statusKeyOf = (status: number): ReservationStatus =>
+  STATUS_KEY[status as OrderStatus] ?? 'new';
 
 export const RESERVATION_STATUS_VARIANT: Record<
   ReservationStatus,
   StatusBadgeVariant
 > = {
+  new: 'accent',
   accepted: 'line',
   checkedIn: 'accent',
   inProgress: 'solid',
@@ -28,14 +47,5 @@ export const RESERVATION_STATUS_VARIANT: Record<
   delayed: 'warn',
   noShow: 'down',
   cancelled: 'flat',
-};
-
-/** The next valid step for a reservation (one primary action per row). */
-export const NEXT_STATUS: Partial<
-  Record<ReservationStatus, ReservationStatus>
-> = {
-  accepted: 'checkedIn',
-  delayed: 'checkedIn',
-  checkedIn: 'inProgress',
-  inProgress: 'completed',
+  rejected: 'down',
 };

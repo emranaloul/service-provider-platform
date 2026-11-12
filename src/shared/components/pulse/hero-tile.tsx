@@ -46,7 +46,12 @@ export function HeroTile({
   const body = (
     <>
       <span className={cn(sub, 'font-bold')}>{label}</span>
-      <span className={cn('fig text-figure', !active && VALUE_TONE[tone])}>
+      {/* Joined without `cn`: tailwind-merge reads the custom size
+          `text-figure` and a colour like `text-hero-accent` as the same
+          group and would drop the size. */}
+      <span
+        className={`fig text-figure ${active ? '' : VALUE_TONE[tone]}`.trim()}
+      >
         {value}
       </span>
       {caption && <span className={sub}>{caption}</span>}

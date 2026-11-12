@@ -4,6 +4,7 @@ import { ChevronDown, CircleHelp } from 'lucide-react';
 import { SCREEN_KEYS, SCREENS } from '@/app/screens';
 import { usePermissionCheck } from '@/shared/permissions';
 import { cn } from '@/shared/lib/utils';
+import { useCurrentUser } from '@/shared/session/current-user';
 
 const NAV_ITEM =
   'flex h-10.5 items-center gap-2.5 rounded-[14px] px-3 font-bold transition-colors [&_svg]:size-4.5';
@@ -18,11 +19,13 @@ export function SidebarContent({
   badges,
 }: {
   onNavigate?: () => void;
-  /** Count bubbles per screen, e.g. `{ reservations: 2 }`. TODO(backend). */
+  /** Count bubbles per screen, e.g. `{ reservations: 2 }`; 0 = none. */
   badges?: Partial<Record<string, number>>;
 }) {
   const { t } = useTranslation();
   const can = usePermissionCheck();
+  const { user } = useCurrentUser();
+  const branchCount = user?.userServiceProviderBranches?.length ?? 0;
 
   return (
     <div className='bg-hero text-hero-ink-2 flex h-full flex-col gap-4.5 px-3.5 py-5'>
@@ -47,9 +50,11 @@ export function SidebarContent({
         className='border-hero-line bg-hero-raised text-hero-ink flex items-center gap-2.5 rounded-xl border px-3 py-2.5 text-start'
       >
         <span className='flex flex-1 flex-col leading-snug'>
-          <span className='font-bold'>Provider name</span>
+          <span className='font-bold'>{user?.serviceProviderName ?? '—'}</span>
           <span className='text-hero-ink-2 text-xs'>
-            {t('shell.allBranches')} · {t('shell.branchCount', { count: 2 })}
+            {t('shell.allBranches')}
+            {branchCount > 0 &&
+              ` · ${t('shell.branchCount', { count: branchCount })}`}
           </span>
         </span>
         <ChevronDown aria-hidden className='size-4.5' />

@@ -3,7 +3,8 @@
 Bilingual (ar RTL first / en) front-end for Mwafq service providers
 (medical centres): reservations, claims, team, services, branches, profile.
 **Starter project** — theme, shell, reusable components and two sample
-screens are in place; the remaining screens, the API and auth are not.
+screens are in place; auth and Branches run on the real API, the other
+screens do not yet.
 Structure and conventions follow `C:\Users\kenea\marhab` (same stack, same
 rules); the theme and product are this project's.
 
@@ -16,18 +17,30 @@ rules); the theme and product are this project's.
 - `*.dc.html` — one board per screen (markup = visual spec, the inline
   `renderVals()` script = sample data and derived values):
 
-| Board                  | Screen                                   | Route                         | Status                                    |
-| ---------------------- | ---------------------------------------- | ----------------------------- | ----------------------------------------- |
-| `Main.dc.html`         | 01 Today                                 | `/today`                      | sample built                              |
-| `Reservations.dc.html` | 02 Reservations — table + preview drawer | `/reservations`               | table sample built; drawer, bulk bar TODO |
-| `Board.dc.html`        | 03 Reservations — board                  | TODO `/reservations/board`    | TODO                                      |
-| `Calendar.dc.html`     | 04 Reservations — calendar               | TODO `/reservations/calendar` | TODO                                      |
-| `Ledgers.dc.html`      | 05 Claims                                | `/ledgers`                    | placeholder                               |
-| `Team.dc.html`         | 06 Team + add-member drawer              | `/team`                       | placeholder                               |
-| `Profile.dc.html`      | 07 Provider profile                      | `/profile`                    | placeholder                               |
-| `Branches.dc.html`     | 08 Branches + drawer                     | `/branches`                   | placeholder                               |
-| `Branch.dc.html`       | 09 Branch page (tabs)                    | TODO `/branches/:id`          | TODO                                      |
-| `Services.dc.html`     | 10 Services catalogue                    | `/services`                   | placeholder                               |
+| Board                  | Screen                                   | Route                         | Status                           |
+| ---------------------- | ---------------------------------------- | ----------------------------- | -------------------------------- |
+| `Main.dc.html`         | 01 Today                                 | `/today`                      | built on the API (dashboard)     |
+| `Reservations.dc.html` | 02 Reservations — table + preview drawer | `/reservations`               | built on the API (doc.md §13)    |
+| `Board.dc.html`        | 03 Reservations — board                  | `/reservations?view=board`    | built on the API                 |
+| `Calendar.dc.html`     | 04 Reservations — calendar               | `/reservations?view=calendar` | built on the API (week view)     |
+| `Ledgers.dc.html`      | 05 Claims                                | `/ledgers`                    | built on the API (doc.md §14–15) |
+| `Team.dc.html`         | 06 Team + add-member drawer              | `/team`                       | built on the API                 |
+| `Profile.dc.html`      | 07 Provider profile                      | `/profile`                    | built on the API (doc.md §6–7)   |
+| `Branches.dc.html`     | 08 Branches + drawer                     | `/branches`                   | built on the API (doc.md §8)     |
+| `Branch.dc.html`       | 09 Branch page (tabs)                    | `/branches/:id`               | built on the API (doc.md §8–11)  |
+| `Services.dc.html`     | 10 Services catalogue                    | `/services` → `/branches`     | not built: admin-only (A-Z §30)  |
+
+**The contract is `SERVICE_PROVIDER_A_TO_Z.md`** (the complete reference:
+provider module, auth, lookups, team, orders, claims, permissions and the
+answered questions). Follow it exactly; the only allowed differences are
+listed with their reasons in `MISSING.md` §5. Screens follow that contract,
+not the boards' data model: e.g. no per-company price
+columns, and a slot belongs to one weekday. Pickers (countries, cities,
+tags, service catalogue, vaccines — note `Vaccine/List?` has no service
+prefix) are in `src/shared/api/lookups.ts`, taken from the lookup-endpoints
+reference. The provider id comes from
+the signed-in user (`src/shared/session/current-user.ts`). Open items and
+backend questions live in `MISSING.md`.
 
 Reservation status model: Accepted (default) → Checked in → In progress →
 Completed; side exits Delayed, No show, Cancelled. No accept/decline step.
@@ -98,8 +111,9 @@ factory) and `modules/today` (KPI tiles, panels with lists).
    (`ms/me/ps/pe/start/end`), never `ml/mr/left/right`.
 6. Status is never colour alone — dot/icon + word.
 7. Gate with `permission` props / `<PermissionGate>`; never check roles.
-   `src/shared/permissions/has-permission.ts` currently allows everything
-   (`TODO(backend)`).
+   Permissions come from the signed-in user's `rolePermissions` (BigInt
+   flags, `backend-flags.ts`); app areas map onto them in
+   `has-permission.ts` (`AREA_FLAGS`). Unknown = denied.
 8. One screen per `views/*-page.tsx`; sub-components and `ColumnDef[]`
    factories in the module's `_components/`.
 9. Server data only through TanStack Query in `modules/<m>/api/` (never
@@ -118,13 +132,21 @@ nav entry in `src/app/screens.ts` + `nav.<key>` in shell i18n → area in
 
 ## Not done yet (handover TODO)
 
-- Auth: sign-in route + `ProtectedRoute`; token store / refresh-on-401
-  already exist in `src/shared/api/` but endpoint names are guesses
-  (`Auth/RefreshToken`, `Auth/Logout`).
-- API layer per module + real types (`src/shared/api/enums.ts`, `types.ts`).
-- Permissions from the backend.
-- Screens 03–10, the reservation preview drawer, bulk bar, command palette
-  (Ctrl K, `cmdk` installed), branch switcher, account menu, Check-in (QR).
+See `MISSING.md`.
+
+`cn()` (`src/shared/lib/utils.ts`) knows the custom font sizes from
+`index.css`; add new `--text-*` sizes there too, or tailwind-merge drops them
+next to a colour class.
+
+## Auth (`src/modules/auth`)
+
+Login is password → 4-digit OTP → token (`VerifyOTP`) → `getUserByToken`.
+The token is stored as `{ token, expiration }` (3 days, or the JWT's `exp`
+if sooner); the user lives in memory (`shared/session/session-store.ts`)
+and is restored on every start by `SessionGate`. No refresh token and no
+logout endpoint: an expired session, a 401 on an authenticated call, 120
+minutes of inactivity or a sign-out in another tab all end the session
+locally. The forgot-password OTP token is memory-only on purpose.
 
 ## Zoho Sprints tooling
 

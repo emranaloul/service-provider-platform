@@ -1,50 +1,79 @@
-import { useSyncExternalStore } from 'react';
-
-/** `AuthTokenResponse` — the pair every sign-in, refresh and company switch returns. */
-export interface TokenPair {
-  accessToken: string;
-  accessTokenExpiresAtUtc: string;
-  refreshToken: string;
-  refreshTokenExpiresAtUtc: string;
+/**
+ * The stored session (auth doc §8.1): `{ token, expiration }` in
+ * localStorage. Only the token lives here; the current user is in memory
+ * (`session-store.ts`) and is re-fetched on every app start.
+ */
+export interface StoredAuth {
+  token: string;
+  /** ISO time after which the session is over. */
+  expiration: string;
 }
 
-const STORAGE_KEY = 'sp-auth';
+export const AUTH_STORAGE_KEY: string =
+  import.meta.env.VITE_AUTH_LOCAL_STORAGE_KEY || 'sp-auth';
 
-function readStorage(): TokenPair | null {
+/** Client-chosen session lifetime (§8.1). */
+export const SESSION_LIFETIME_MS = 3 * 24 * 60 * 60 * 1000;
+
+/** The JWT's own `exp` in ms, or `null` when the token can't be read. */
+export function jwtExpiry(token: string): number | null {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return null;
-    const pair = JSON.parse(raw) as Partial<TokenPair>;
-    return pair.accessToken && pair.refreshToken ? (pair as TokenPair) : null;
+    const part = token.split('.')[1];
+    if (!part) return null;
+    const json = atob(part.replace(/-/g, '+').replace(/_/g, '/'));
+    const exp = (JSON.parse(json) as { exp?: unknown }).exp;
+    return typeof exp === 'number' ? exp * 1000 : null;
   } catch {
     return null;
   }
 }
 
-let current: TokenPair | null = readStorage();
+/**
+ * Session end: 3 days from now, or the token's own expiry when that comes
+ * first — the client-only 3 days could outlive the JWT (quirk 3).
+ */
+export function sessionExpiration(token: string, now = Date.now()): string {
+  const jwt = jwtExpiry(token);
+  const end = Math.min(now + SESSION_LIFETIME_MS, jwt ?? Infinity);
+  return new Date(end).toISOString();
+}
+
+export const isExpired = (auth: StoredAuth, now = Date.now()): boolean => {
+  const at = Date.parse(auth.expiration);
+  return Number.isNaN(at) || now >= at;
+};
+
+function readStorage(): StoredAuth | null {
+  try {
+    const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+    if (!raw) return null;
+    const auth = JSON.parse(raw) as Partial<StoredAuth>;
+    return auth.token && auth.expiration ? (auth as StoredAuth) : null;
+  } catch {
+    return null;
+  }
+}
+
+let current: StoredAuth | null = readStorage();
 const listeners = new Set<() => void>();
 const emit = () => listeners.forEach((fn) => fn());
 
-// Another tab rotated the pair or signed out — follow it.
+// Another tab signed in or out — follow it.
 if (typeof window !== 'undefined') {
   window.addEventListener('storage', (event) => {
-    if (event.key !== STORAGE_KEY && event.key !== null) return;
+    if (event.key !== AUTH_STORAGE_KEY && event.key !== null) return;
     current = readStorage();
     emit();
   });
 }
 
 export const tokenStore = {
-  get: (): TokenPair | null => current,
-  /** Re-reads storage: another tab may have rotated the pair since `get()`. */
-  readLatest: (): TokenPair | null => {
-    current = readStorage();
-    return current;
-  },
-  set(pair: TokenPair) {
-    current = pair;
+  get: (): StoredAuth | null => current,
+  /** Saves a freshly verified token with its session expiry. */
+  set(token: string) {
+    current = { token, expiration: sessionExpiration(token) };
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(pair));
+      localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(current));
     } catch {
       // Storage blocked: the session lives for this tab only.
     }
@@ -53,7 +82,7 @@ export const tokenStore = {
   clear() {
     current = null;
     try {
-      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(AUTH_STORAGE_KEY);
     } catch {
       // Nothing persisted.
     }
@@ -64,15 +93,3 @@ export const tokenStore = {
     return () => listeners.delete(fn);
   },
 };
-
-const hasTokens = () => current !== null;
-
-export function useHasTokens(): boolean {
-  return useSyncExternalStore(tokenStore.subscribe, hasTokens, hasTokens);
-}
-
-/** True when `isoUtc` is in the past or within `skewMs` of now. */
-export function isExpiring(isoUtc: string, skewMs = 30_000): boolean {
-  const at = Date.parse(isoUtc);
-  return Number.isNaN(at) || at - Date.now() <= skewMs;
-}

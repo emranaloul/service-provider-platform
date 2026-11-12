@@ -27,6 +27,8 @@ interface SelectFieldProps<T extends FieldValues> {
   required?: boolean;
   disabled?: boolean;
   className?: string;
+  /** Runs after the field changes — e.g. to reset or prefill dependent fields. */
+  onValueChange?: (value: string) => void;
 }
 
 /**
@@ -43,6 +45,7 @@ export function SelectField<T extends FieldValues>({
   required,
   disabled,
   className,
+  onValueChange,
 }: SelectFieldProps<T>) {
   return (
     <FormField
@@ -58,7 +61,10 @@ export function SelectField<T extends FieldValues>({
           )}
           <Select
             value={field.value ?? ''}
-            onValueChange={field.onChange}
+            onValueChange={(value) => {
+              field.onChange(value);
+              onValueChange?.(value);
+            }}
             disabled={disabled}
           >
             <FormControl>

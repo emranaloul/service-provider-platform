@@ -6,6 +6,7 @@
  * Add an entry for each namespace a new module registers.
  */
 export const LAZY_NAMESPACES: Record<string, () => Promise<unknown>> = {
+  auth: () => import('@/modules/auth/i18n'),
   today: () => import('@/modules/today/i18n'),
   reservations: () => import('@/modules/reservations/i18n'),
   ledgers: () => import('@/modules/ledgers/i18n'),
@@ -13,4 +14,5 @@ export const LAZY_NAMESPACES: Record<string, () => Promise<unknown>> = {
   services: () => import('@/modules/services/i18n'),
   branches: () => import('@/modules/branches/i18n'),
   profile: () => import('@/modules/profile/i18n'),
+  public: () => import('@/modules/public/i18n'),
 };

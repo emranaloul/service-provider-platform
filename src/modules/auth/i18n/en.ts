@@ -1,0 +1,58 @@
+export const en = {
+  login: {
+    title: 'Sign in',
+    description: "Enter your username and password. We'll send you a code.",
+    username: 'Username or email',
+    password: 'Password',
+    forgot: 'Forgot your password?',
+    submit: 'Continue',
+    submitting: 'Checking…',
+    expired: 'Your session has expired. Please sign in again.',
+  },
+  otp: {
+    title: 'Enter the code',
+    description: 'We sent a {{count}}-digit code to',
+    label: 'Verification code',
+    verifying: 'Verifying…',
+    verifyFailed: 'An error occurred during OTP verification.',
+    resend: 'Resend code',
+    resendIn: 'Resend code in {{seconds}}s',
+    resent: 'A new code was sent',
+    resendFailed: 'Failed to resend the code.',
+    back: 'Back',
+  },
+  forgot: {
+    title: 'Reset your password',
+    description:
+      "Enter your username. We'll send you a code to confirm it's you.",
+    submit: 'Send code',
+    submitting: 'Sending…',
+    failed: 'Something went wrong. Please try again.',
+    backToLogin: 'Back to sign in',
+  },
+  reset: {
+    title: 'Choose a new password',
+    description: 'For',
+    password: 'New password',
+    confirm: 'Confirm new password',
+    rules:
+      'At least 6 characters, with a digit, a lowercase and an uppercase letter, and a special character.',
+    submit: 'Update password',
+    submitting: 'Updating…',
+    done: 'Password updated. Sign in with your new password.',
+  },
+  account: {
+    signOut: 'Sign out',
+  },
+  validation: {
+    required: 'Required',
+    passwordLength: 'Use 6 to 50 characters',
+    passwordMin: 'Use at least 6 characters',
+    passwordDigit: 'Add at least one digit',
+    passwordLower: 'Add at least one lowercase letter',
+    passwordUpper: 'Add at least one uppercase letter',
+    passwordSymbol: 'Add at least one symbol',
+    passwordSpecial: 'Add at least one special character, e.g. ! @ # $',
+    passwordMatch: "The passwords don't match",
+  },
+};

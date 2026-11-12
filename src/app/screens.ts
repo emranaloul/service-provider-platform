@@ -2,7 +2,6 @@ import type { LucideIcon } from 'lucide-react';
 import {
   Building2,
   CalendarDays,
-  ListChecks,
   MapPin,
   ReceiptText,
   Sun,
@@ -20,7 +19,9 @@ export const SCREEN_KEYS = [
   'reservations',
   'ledgers',
   'team',
-  'services',
+  // No 'services': providers don't manage the catalogue (A-Z §30, Blocked
+  // Items §4). What a branch offers lives on its page. `/services`
+  // redirects to Branches.
   'branches',
   'profile',
 ] as const;
@@ -58,12 +59,6 @@ export const SCREENS: Record<ScreenKey, ScreenDef> = {
     path: '/team',
     icon: Users,
     permission: ['team', 'view'],
-  },
-  services: {
-    key: 'services',
-    path: '/services',
-    icon: ListChecks,
-    permission: ['services', 'view'],
   },
   branches: {
     key: 'branches',

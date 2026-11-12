@@ -1,4 +1,4 @@
-import axios, { type InternalAxiosRequestConfig } from 'axios';
+import axios from 'axios';
 import {
   ApiError,
   errorBodyOf,
@@ -6,21 +6,18 @@ import {
   toApiError,
 } from '@/shared/api/api-error';
 import { cleanParams, type QueryParamValue } from '@/shared/api/params';
-import { endSession } from '@/shared/api/session';
-import {
-  isExpiring,
-  tokenStore,
-  type TokenPair,
-} from '@/shared/api/token-store';
+import { endSession, logout } from '@/shared/api/session';
+import { isExpired, tokenStore } from '@/shared/api/token-store';
 import type { Result } from '@/shared/api/types';
 import i18n from '@/shared/i18n';
 
 declare module 'axios' {
   interface AxiosRequestConfig {
-    /** Sent without a bearer and never refreshed (sign-in, refresh itself). */
+    /**
+     * Sent without the stored session token and skips the expiry check:
+     * sign-in, OTP, or a request carrying its own `bearer`.
+     */
     authless?: boolean;
-    /** Set once the request was replayed after a refresh. */
-    retried?: boolean;
   }
 }
 
@@ -43,118 +40,48 @@ if (!baseURL && import.meta.env.MODE !== 'test') {
 
 export const http = axios.create({
   baseURL: baseURL ?? '',
-  headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
+  // No default Content-Type: axios sets JSON for plain objects/arrays and lets
+  // the browser set the multipart boundary for FormData. A JSON default would
+  // make axios serialise every FormData body (all create/update calls) to JSON.
+  headers: { Accept: 'application/json' },
+  // Arrays as repeated keys: `TagIds=3&TagIds=7`, not `TagIds[]=3` (§1.6).
+  paramsSerializer: { indexes: null },
   // HTTP 600 is the API's failure status: reject so the body reaches toApiError.
   validateStatus: (status) => status >= 200 && status < 300,
 });
 
-// ── Refresh: one in flight per tab, one at a time across tabs ──────────────
+/** The UI language the backend localises names into (`culture` query param). */
+export const currentCulture = (): 'en' | 'ar' =>
+  i18n.language === 'en' ? 'en' : 'ar';
 
-let inflight: Promise<TokenPair> | null = null;
-
-async function withCrossTabLock<T>(run: () => Promise<T>): Promise<T> {
-  if (typeof navigator !== 'undefined' && navigator.locks) {
-    return navigator.locks.request('sp-token-refresh', run);
-  }
-  return run();
-}
-
-function latestOrEnd(): TokenPair {
-  const latest = tokenStore.readLatest();
-  if (!latest) {
-    endSession();
-    throw new ApiError({ kind: 'api', status: 401 });
-  }
-  return latest;
-}
-
-/** Must run inside the lock: the presented refresh token is revoked. */
-async function refreshUnlocked(latest: TokenPair): Promise<TokenPair> {
-  try {
-    const { data } = await http.post<Result<TokenPair>>(
-      resolvePath('Auth/RefreshToken'),
-      { refreshToken: latest.refreshToken },
-      { authless: true },
-    );
-    const pair = unwrap(data);
-    tokenStore.set(pair);
-    return pair;
-  } catch (error) {
-    const apiError = toApiError(error);
-    // A rejected refresh token ends the session; a dropped connection does not.
-    if (apiError.kind === 'api') endSession();
-    throw apiError;
-  }
-}
-
-async function exchange(staleAccessToken: string | null): Promise<TokenPair> {
-  return withCrossTabLock(async () => {
-    const latest = latestOrEnd();
-    // Another tab (or an earlier refresh here) already rotated the pair.
-    if (
-      latest.accessToken !== staleAccessToken &&
-      !isExpiring(latest.accessTokenExpiresAtUtc)
-    ) {
-      return latest;
-    }
-    return refreshUnlocked(latest);
-  });
-}
-
-/**
- * Runs an operation that spends the refresh token (switch company, logout)
- * under the same lock as refresh, with a fresh pair. Send its request with
- * `authless` + `bearer` so the interceptor doesn't try to refresh inside it.
- */
-export function withTokenLock<T>(run: (pair: TokenPair) => Promise<T>) {
-  return withCrossTabLock(async () => {
-    let pair = latestOrEnd();
-    if (isExpiring(pair.accessTokenExpiresAtUtc)) {
-      pair = await refreshUnlocked(pair);
-    }
-    return run(pair);
-  });
-}
-
-/** Rotates the pair. Concurrent callers share one refresh request. */
-export function refreshTokens(staleAccessToken: string | null) {
-  inflight ??= exchange(staleAccessToken).finally(() => {
-    inflight = null;
-  });
-  return inflight;
-}
-
-const bearerOf = (config: InternalAxiosRequestConfig): string | null => {
-  const header = config.headers.get('Authorization');
-  return typeof header === 'string' ? header.replace(/^Bearer /, '') : null;
-};
-
-http.interceptors.request.use(async (config) => {
-  config.headers.set('Accept-Language', i18n.language === 'en' ? 'en' : 'ar');
+http.interceptors.request.use((config) => {
+  const culture = currentCulture();
+  config.headers.set('Accept-Language', culture);
+  // Every request carries `culture` (doc §1.1).
+  config.params = { ...(config.params as object | undefined), culture };
   if (config.authless) return config;
-  let pair = tokenStore.get();
-  if (pair && isExpiring(pair.accessTokenExpiresAtUtc)) {
-    pair = await refreshTokens(pair.accessToken);
+
+  const auth = tokenStore.get();
+  // An expired session logs out and the request is never sent (auth §8.3).
+  if (auth && isExpired(auth)) {
+    logout({ expired: true });
+    throw new ApiError({ kind: 'canceled' });
   }
-  if (pair) config.headers.set('Authorization', `Bearer ${pair.accessToken}`);
+  if (auth) config.headers.set('Authorization', `Bearer ${auth.token}`);
   return config;
 });
 
-http.interceptors.response.use(undefined, async (error: unknown) => {
-  // Only an HTTP 401 means the access token was refused. An HTTP 600 is a
-  // business failure and is never retried.
+http.interceptors.response.use(undefined, (error: unknown) => {
+  // A 401 on a request sent with the session token means the token is no
+  // longer accepted: there is no refresh, so the session ends (auth §6). A
+  // 401 on sign-in / OTP is just "invalid credentials" and is left alone.
   if (
     axios.isAxiosError(error) &&
     error.response?.status === 401 &&
-    error.config &&
-    !error.config.authless
+    !error.config?.authless &&
+    tokenStore.get()
   ) {
-    if (error.config.retried || !tokenStore.get()) {
-      endSession();
-      throw toApiError(error);
-    }
-    await refreshTokens(bearerOf(error.config));
-    return http.request({ ...error.config, retried: true });
+    endSession();
   }
   throw toApiError(error);
 });
@@ -172,7 +99,10 @@ interface RequestOptions {
   params?: Record<string, QueryParamValue>;
   signal?: AbortSignal;
   authless?: boolean;
-  /** An explicit access token, for requests sent inside `withTokenLock`. */
+  /**
+   * An explicit token instead of the session's, e.g. the in-memory OTP token
+   * of the forgot-password flow (auth §7.3).
+   */
   bearer?: string;
 }
 
@@ -222,11 +152,18 @@ export async function apiPut<T>(
   return unwrap(data);
 }
 
-export async function apiDelete<T>(path: string, options?: RequestOptions) {
-  const { data } = await http.delete<Result<T>>(
-    resolvePath(path),
-    configOf(options),
-  );
+/**
+ * `body` goes in the DELETE request body: a JSON id array for `MultipleDelete`,
+ * or a `FormData` (e.g. the provider `DeleteImage` flags).
+ */
+export async function apiDelete<T>(
+  path: string,
+  options?: RequestOptions & { body?: unknown },
+) {
+  const { data } = await http.delete<Result<T>>(resolvePath(path), {
+    ...configOf(options),
+    data: options?.body,
+  });
   return unwrap(data);
 }
 
