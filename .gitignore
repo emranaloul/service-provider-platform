@@ -50,3 +50,5 @@ documentations/
 
 # Backend OpenAPI export — local reference only.
 ALLSWAGGER-Dont-PUSH-IT.json
+
+package-lock.json
