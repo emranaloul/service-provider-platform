@@ -126,6 +126,18 @@ nav entry in `src/app/screens.ts` + `nav.<key>` in shell i18n → area in
 - Screens 03–10, the reservation preview drawer, bulk bar, command palette
   (Ctrl K, `cmdk` installed), branch switcher, account menu, Check-in (QR).
 
+## Zoho Sprints tooling
+
+- Skills: `/create-ticket`, `/pickup-ticket`, `/ship` (`.claude/skills/`).
+- GitHub Action `.github/workflows/zoho-ticket-status-sync.yml` moves the
+  ticket on branch push / PR merge via `scripts/zoho/sync-ticket-status.mjs`.
+  It needs repo secrets `ZOHO_CLIENT_ID`, `ZOHO_CLIENT_SECRET`,
+  `ZOHO_REFRESH_TOKEN` and repo variables `ZOHO_KANBAN_SPRINT_ID`,
+  `ZOHO_BACKLOG_SPRINT_ID`, `ZOHO_TICKET_PREFIX`; without them it skips.
+  It runs with `DRY_RUN: true` until the status IDs are verified.
+- Zoho project ID `1335000000176026`; other IDs are placeholders — see
+  `scripts/zoho/README.md`.
+
 ## Commands
 
 `npm run dev` · `npx tsc -b` · `npm run lint` · `npm run format` ·

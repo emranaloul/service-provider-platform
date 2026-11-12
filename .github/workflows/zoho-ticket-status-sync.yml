@@ -1,0 +1,40 @@
+name: Sync Zoho Sprints ticket status
+
+on:
+  push:
+    branches-ignore: [main]
+  pull_request:
+    # Only a merge moves a ticket (to Ready For Testing; QA moves it to Done) —
+    # the board has no Code Review column.
+    types: [closed]
+    branches: [main]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Sync ticket status
+        env:
+          ZOHO_CLIENT_ID: ${{ secrets.ZOHO_CLIENT_ID }}
+          ZOHO_CLIENT_SECRET: ${{ secrets.ZOHO_CLIENT_SECRET }}
+          ZOHO_REFRESH_TOKEN: ${{ secrets.ZOHO_REFRESH_TOKEN }}
+          ZOHO_PROJECT_ID: '1335000000176026'
+          ZOHO_KANBAN_SPRINT_ID: ${{ vars.ZOHO_KANBAN_SPRINT_ID }}
+          ZOHO_BACKLOG_SPRINT_ID: ${{ vars.ZOHO_BACKLOG_SPRINT_ID }}
+          ZOHO_TICKET_PREFIX: ${{ vars.ZOHO_TICKET_PREFIX }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
+          GITHUB_HEAD_REF: ${{ github.head_ref }}
+          GITHUB_REF_NAME: ${{ github.ref_name }}
+          GITHUB_BASE_REF: ${{ github.base_ref }}
+          PR_ACTION: ${{ github.event.action }}
+          PR_MERGED: ${{ github.event.pull_request.merged }}
+          # DRY RUN until this project's status IDs are verified. Set to 'false'
+          # to apply - see scripts/zoho/README.md ("Live mode").
+          DRY_RUN: 'true'
+        run: node scripts/zoho/sync-ticket-status.mjs
